@@ -125,11 +125,6 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-//        controladorPrograma.insertarEstudiante(
-//                jTFCodigo.getText(),
-//                jTFNombre.getText(),
-//                jCBSexo.getSelectedItem().toString(),
-//                jTFNumCreditos.getText());
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

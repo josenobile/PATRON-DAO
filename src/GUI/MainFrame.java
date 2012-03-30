@@ -25,11 +25,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     JPanelEstudiantes panelEstudiantes;
     JPanelProgramaAcademico panelPrograma;
-    
+
     public MainFrame() {
         initComponents();
         panelEstudiantes = new JPanelEstudiantes();
         panelPrograma = new JPanelProgramaAcademico();
+        getContentPane().add(panelEstudiantes);
+        panelEstudiantes.setBounds(220, 0, 580, 500);
+        panelEstudiantes.setVisible(false);
+        getContentPane().add(panelPrograma);
+        panelPrograma.setBounds(220, 0, 580, 500);
+        panelPrograma.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -109,21 +115,17 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
-
         //@FIXME 
-        getContentPane().remove(panelPrograma);
-        getContentPane().add(panelEstudiantes);
-        panelEstudiantes.setBounds(220, 0, 580, 500);
+        panelPrograma.setVisible(false);
+        panelEstudiantes.setVisible(true);
 
     }//GEN-LAST:event_jButtonEstudiantesActionPerformed
 
     private void jButtonProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProgramaActionPerformed
-        
-        //@FIXME 
-        getContentPane().remove(panelEstudiantes);
-        getContentPane().add(panelPrograma);
-        panelPrograma.setBounds(220, 0, 580, 500);
 
+        //@FIXME 
+        panelEstudiantes.setVisible(false);
+        panelPrograma.setVisible(true);
     }//GEN-LAST:event_jButtonProgramaActionPerformed
 
     public static void main(String args[]) {
