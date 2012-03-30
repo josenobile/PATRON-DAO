@@ -1,3 +1,25 @@
+//**********************************************************
+// DESARROLLO DE SOFTWARE II
+// TALLER: PATRON-DAO
+//
+// ARCHIVO: MainFrame.java
+//
+// FECHA:12/03/30
+//
+// AUTORES:
+// Gustavo Adolfo Rodriguez    0932979-3743
+// gustalibreros@hotmail.com
+//
+// José Antonio Nobile Rendón  0747102-2711
+// jose.nobile@gmail.com
+//
+// Roberto Ceballos            0441812-3743
+// robertrock2000@gmail.com
+//
+// ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
+// UNIVERSIDAD DEL VALLE
+//*********************************************************
+
 package GUI;
 
 public class MainFrame extends javax.swing.JFrame {

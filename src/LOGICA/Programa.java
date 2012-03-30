@@ -1,14 +1,36 @@
+//**********************************************************
+// DESARROLLO DE SOFTWARE II
+// TALLER: PATRON-DAO
+//
+// ARCHIVO: Programa.java
+//
+// FECHA:12/03/30
+//
+// AUTORES:
+// Gustavo Adolfo Rodriguez    0932979-3743
+// gustalibreros@hotmail.com
+//
+// José Antonio Nobile Rendón  0747102-2711
+// jose.nobile@gmail.com
+//
+// Roberto Ceballos            0441812-3743
+// robertrock2000@gmail.com
+//
+// ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
+// UNIVERSIDAD DEL VALLE
+//*********************************************************
+
+
+
 package LOGICA;
 
 public class Programa {
-
     String codigo;
-    String nombre;
+    int    creditos;
     String nivel;
-    int creditos;
+    String nombre;
 
-    public Programa() {
-    }
+    public Programa() {}
 
     public String getCodigo() {
         return codigo;
@@ -42,3 +64,6 @@ public class Programa {
         this.nombre = nombre;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
