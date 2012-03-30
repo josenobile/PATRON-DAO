@@ -22,15 +22,15 @@
 
 package GUI;
 
-import CONTROLADOR.ControladorEstudiante;
+import CONTROLADOR.ControladorProgramaAcademico;
 
 public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
-    ControladorEstudiante controladorEstudiante;
+    ControladorProgramaAcademico controladorPrograma;
     
     public JPanelProgramaAcademico() {
         
-        controladorEstudiante = new ControladorEstudiante();
+        controladorPrograma = new ControladorProgramaAcademico();
         initComponents();
     }
 
@@ -44,12 +44,12 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jLabelRegistar = new javax.swing.JLabel();
         jLCodigo = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
-        jLSexo = new javax.swing.JLabel();
-        jLPrograma = new javax.swing.JLabel();
+        jLNivel = new javax.swing.JLabel();
+        jLNumCreditos = new javax.swing.JLabel();
         jTFCodigo = new javax.swing.JTextField();
         jTFNombre = new javax.swing.JTextField();
-        jCBSexo = new javax.swing.JComboBox();
-        jTFPrograma = new javax.swing.JTextField();
+        jTFNivel = new javax.swing.JTextField();
+        jTFNumCreditos = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -57,7 +57,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         jLabelTitulo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Gestion Estudiantes");
+        jLabelTitulo.setText("Gestion Programa Academico");
         add(jLabelTitulo);
         jLabelTitulo.setBounds(0, 10, 580, 40);
 
@@ -65,7 +65,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         jLabelRegistar.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelRegistar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRegistar.setText("Registar Nuevo Estudiante");
+        jLabelRegistar.setText("Registar Programa Academico");
         jPanelRegistro.add(jLabelRegistar);
         jLabelRegistar.setBounds(0, 10, 580, 40);
 
@@ -79,25 +79,23 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jPanelRegistro.add(jLNombre);
         jLNombre.setBounds(50, 110, 200, 30);
 
-        jLSexo.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jLSexo.setText("Sexo");
-        jPanelRegistro.add(jLSexo);
-        jLSexo.setBounds(50, 150, 200, 30);
+        jLNivel.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNivel.setText("Nivel");
+        jPanelRegistro.add(jLNivel);
+        jLNivel.setBounds(50, 150, 200, 30);
 
-        jLPrograma.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jLPrograma.setText("Programa Academico");
-        jPanelRegistro.add(jLPrograma);
-        jLPrograma.setBounds(50, 190, 200, 30);
+        jLNumCreditos.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNumCreditos.setText("Numero de Creditos");
+        jPanelRegistro.add(jLNumCreditos);
+        jLNumCreditos.setBounds(50, 190, 200, 30);
         jPanelRegistro.add(jTFCodigo);
         jTFCodigo.setBounds(260, 70, 250, 30);
         jPanelRegistro.add(jTFNombre);
         jTFNombre.setBounds(260, 110, 250, 30);
-
-        jCBSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Masculino", "Femenino" }));
-        jPanelRegistro.add(jCBSexo);
-        jCBSexo.setBounds(260, 150, 250, 30);
-        jPanelRegistro.add(jTFPrograma);
-        jTFPrograma.setBounds(260, 190, 250, 30);
+        jPanelRegistro.add(jTFNivel);
+        jTFNivel.setBounds(260, 150, 250, 30);
+        jPanelRegistro.add(jTFNumCreditos);
+        jTFNumCreditos.setBounds(260, 190, 250, 30);
 
         jButton3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jButton3.setText("LIMPIAR");
@@ -127,11 +125,11 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        controladorEstudiante.insertarEstudiante(
-                jTFCodigo.getText(),
-                jTFNombre.getText(),
-                jCBSexo.getSelectedItem().toString(),
-                jTFPrograma.getText());
+//        controladorPrograma.insertarEstudiante(
+//                jTFCodigo.getText(),
+//                jTFNombre.getText(),
+//                jCBSexo.getSelectedItem().toString(),
+//                jTFNumCreditos.getText());
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -139,25 +137,25 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         
         jTFCodigo.setText("");
         jTFNombre.setText("");
-        jCBSexo.setSelectedIndex(0);
-        jTFPrograma.setText("");
+        jTFNivel.setText("");
+        jTFNumCreditos.setText("");
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jCBSexo;
     private javax.swing.JLabel jLCodigo;
+    private javax.swing.JLabel jLNivel;
     private javax.swing.JLabel jLNombre;
-    private javax.swing.JLabel jLPrograma;
-    private javax.swing.JLabel jLSexo;
+    private javax.swing.JLabel jLNumCreditos;
     private javax.swing.JLabel jLabelRegistar;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelRegistro;
     private javax.swing.JTextField jTFCodigo;
+    private javax.swing.JTextField jTFNivel;
     private javax.swing.JTextField jTFNombre;
-    private javax.swing.JTextField jTFPrograma;
+    private javax.swing.JTextField jTFNumCreditos;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

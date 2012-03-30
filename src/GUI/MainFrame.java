@@ -19,13 +19,17 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package GUI;
 
 public class MainFrame extends javax.swing.JFrame {
 
+    JPanelEstudiantes panelEstudiantes;
+    JPanelProgramaAcademico panelPrograma;
+    
     public MainFrame() {
         initComponents();
+        panelEstudiantes = new JPanelEstudiantes();
+        panelPrograma = new JPanelProgramaAcademico();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,11 +37,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        jButtonEstudiantes = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButtonPrograma = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jLabelLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -51,34 +55,34 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setLayout(null);
+        jPanel1.add(jSeparator3);
+        jSeparator3.setBounds(5, 120, 200, 6);
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jButton2.setText("Programa Academico");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEstudiantes.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jButtonEstudiantes.setText("Estudiantes");
+        jButtonEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonEstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(5, 180, 200, 35);
+        jPanel1.add(jButtonEstudiantes);
+        jButtonEstudiantes.setBounds(5, 130, 200, 35);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(5, 170, 200, 6);
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jButton1.setText("Estudiantes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrograma.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jButtonPrograma.setText("Programa Academico");
+        jButtonPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonProgramaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(5, 130, 200, 35);
+        jPanel1.add(jButtonPrograma);
+        jButtonPrograma.setBounds(5, 180, 200, 35);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator2);
         jSeparator2.setBounds(210, 0, 6, 500);
-        jPanel1.add(jSeparator3);
-        jSeparator3.setBounds(5, 120, 200, 6);
         jPanel1.add(jSeparator4);
         jSeparator4.setBounds(5, 220, 200, 6);
 
@@ -104,16 +108,21 @@ public class MainFrame extends javax.swing.JFrame {
         setBounds((screenSize.width-810)/2, (screenSize.height-530)/2, 810, 530);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        JPanelEstudiantes panelEstudiantes = new JPanelEstudiantes();
+    private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
+
+        getContentPane().remove(panelPrograma);
         getContentPane().add(panelEstudiantes);
         panelEstudiantes.setBounds(220, 0, 580, 500);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonEstudiantesActionPerformed
+
+    private void jButtonProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProgramaActionPerformed
+
+        getContentPane().remove(panelEstudiantes);
+        getContentPane().add(panelPrograma);
+        panelPrograma.setBounds(220, 0, 580, 500);
+
+    }//GEN-LAST:event_jButtonProgramaActionPerformed
 
     public static void main(String args[]) {
 
@@ -124,14 +133,15 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new MainFrame().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonEstudiantes;
+    private javax.swing.JButton jButtonPrograma;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEdit;
