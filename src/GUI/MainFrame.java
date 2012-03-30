@@ -15,6 +15,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DESARROLLO II");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -62,7 +64,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new MainFrame().setVisible(true);
             }
