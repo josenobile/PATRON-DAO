@@ -115,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
-        //@FIXME 
+        
         panelPrograma.setVisible(false);
         panelEstudiantes.setVisible(true);
 
@@ -123,7 +123,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProgramaActionPerformed
 
-        //@FIXME 
         panelEstudiantes.setVisible(false);
         panelPrograma.setVisible(true);
     }//GEN-LAST:event_jButtonProgramaActionPerformed

@@ -19,21 +19,17 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package ACCESO_DATOS;
 
 //~--- non-JDK imports --------------------------------------------------------
-
 import LOGICA.Programa;
-
-//~--- JDK imports ------------------------------------------------------------
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DaoPrograma {
+
     FachadaBD fachada;
 
     public DaoPrograma() {
@@ -42,14 +38,14 @@ public class DaoPrograma {
 
     public int guardarPrograma(Programa p) {
         String sql_guardar;
-        int    numFilas = 0;
+        int numFilas = 0;
 
         sql_guardar = "INSERT INTO programa VALUES ('" + p.getCodigo() + "', '" + p.getNombre() + "', '" + p.getNivel()
-                      + "', " + p.getCreditos() + ")";
+                + "', " + p.getCreditos() + ")";
 
         try {
-            Connection conn      = fachada.conectar();
-            Statement  sentencia = conn.createStatement();
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
 
             numFilas = sentencia.executeUpdate(sql_guardar);
             conn.close();
@@ -66,7 +62,7 @@ public class DaoPrograma {
 
     public Programa consultarPrograma(String codigo) {
         Programa p = new Programa();
-        String   sql_select;
+        String sql_select;
 
         sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  programa WHERE codigo='" + codigo + "'";
 
@@ -76,7 +72,7 @@ public class DaoPrograma {
             System.out.println("consultando en la bd");
 
             Statement sentencia = conn.createStatement();
-            ResultSet tabla     = sentencia.executeQuery(sql_select);
+            ResultSet tabla = sentencia.executeQuery(sql_select);
 
             while (tabla.next()) {
                 p.setCodigo(tabla.getString(1));
@@ -98,10 +94,12 @@ public class DaoPrograma {
         return null;
     }
 
-    public void modificarPrograma(int codigoPrograma) {}
+    public void modificarPrograma(int codigoPrograma) {
+    }
 
-    public void borrarPrograma(int codigoPrograma) {}
-}    // fin clase
+    public void borrarPrograma(int codigoPrograma) {
+    }
+}
 
 
 //~ Formatted by Jindent --- http://www.jindent.com

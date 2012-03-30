@@ -19,7 +19,6 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package GUI;
 
 import CONTROLADOR.ControladorEstudiante;
@@ -27,9 +26,9 @@ import CONTROLADOR.ControladorEstudiante;
 public class JPanelEstudiantes extends javax.swing.JPanel {
 
     ControladorEstudiante controladorEstudiante;
-    
+
     public JPanelEstudiantes() {
-        
+
         controladorEstudiante = new ControladorEstudiante();
         initComponents();
     }
@@ -126,24 +125,26 @@ public class JPanelEstudiantes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+
         controladorEstudiante.insertarEstudiante(
                 jTFCodigo.getText(),
                 jTFNombre.getText(),
                 jCBSexo.getSelectedItem().toString(),
                 jTFPrograma.getText());
-        
+        limpiarCamposRegistro();
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        limpiarCamposRegistro();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void limpiarCamposRegistro() {
         jTFCodigo.setText("");
         jTFNombre.setText("");
         jCBSexo.setSelectedIndex(0);
         jTFPrograma.setText("");
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

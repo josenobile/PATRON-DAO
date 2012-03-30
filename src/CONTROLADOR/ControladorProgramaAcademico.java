@@ -53,23 +53,22 @@ public class ControladorProgramaAcademico {
         System.out.println("Se va a insertó  un  nuevo programa");
     }    // end
 
-    public Vector consultarPrograma(String codigo) {
-        Vector   v = new Vector();
-        Programa p = new Programa();
+//    public Vector consultarPrograma(String codigo) {
+//        Vector   v = new Vector();
+//        Programa p = new Programa();
+//
+//        System.out.println("Se va a consultar un programa");
+//        p = daoPrograma.consultarPrograma(codigo);
+//
+//        // se asignan datos al vector
+//        v.add(p.getCodigo());
+//        v.add(p.getNombre());
+//        v.add(p.getNivel());
+//        v.add(p.getCreditos());
+//
+//        return v;
+//    }
 
-        System.out.println("Se va a consultar un programa");
-        p = daoPrograma.consultarPrograma(codigo);
-
-        // se asignan datos al vector
-        v.add(p.getCodigo());
-        v.add(p.getNombre());
-        v.add(p.getNivel());
-        v.add(p.getCreditos());
-
-        return v;
-    }
-
-    public void listarProgramas() {}
 }
 
 
