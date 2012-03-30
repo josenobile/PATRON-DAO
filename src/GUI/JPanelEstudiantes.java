@@ -26,21 +26,97 @@ public class JPanelEstudiantes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanelRegistro = new javax.swing.JPanel();
+        jLabelRegistar = new javax.swing.JLabel();
+        jLCodigo = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
+        jLSexo = new javax.swing.JLabel();
+        jLPrograma = new javax.swing.JLabel();
+        jTFCodigo = new javax.swing.JTextField();
+        jTFNombre = new javax.swing.JTextField();
+        jCBSexo = new javax.swing.JComboBox();
+        jTFPrograma = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setLayout(null);
 
-        jButton1.setText("jButton1");
-        add(jButton1);
-        jButton1.setBounds(0, 0, 72, 30);
+        jLabelTitulo.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setText("Gestion Estudiantes");
+        add(jLabelTitulo);
+        jLabelTitulo.setBounds(0, 10, 580, 40);
 
-        jButton2.setText("jButton1");
-        add(jButton2);
-        jButton2.setBounds(500, 470, 80, 30);
+        jPanelRegistro.setLayout(null);
+
+        jLabelRegistar.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabelRegistar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRegistar.setText("Registar Nuevo Estudiante");
+        jPanelRegistro.add(jLabelRegistar);
+        jLabelRegistar.setBounds(0, 10, 580, 40);
+
+        jLCodigo.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLCodigo.setText("Codigo");
+        jPanelRegistro.add(jLCodigo);
+        jLCodigo.setBounds(50, 70, 200, 30);
+
+        jLNombre.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNombre.setText("Nombre");
+        jPanelRegistro.add(jLNombre);
+        jLNombre.setBounds(50, 110, 200, 30);
+
+        jLSexo.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLSexo.setText("Sexo");
+        jPanelRegistro.add(jLSexo);
+        jLSexo.setBounds(50, 150, 200, 30);
+
+        jLPrograma.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLPrograma.setText("Programa Academico");
+        jPanelRegistro.add(jLPrograma);
+        jLPrograma.setBounds(50, 190, 200, 30);
+        jPanelRegistro.add(jTFCodigo);
+        jTFCodigo.setBounds(260, 70, 250, 30);
+        jPanelRegistro.add(jTFNombre);
+        jTFNombre.setBounds(260, 110, 250, 30);
+
+        jCBSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanelRegistro.add(jCBSexo);
+        jCBSexo.setBounds(260, 150, 250, 30);
+        jPanelRegistro.add(jTFPrograma);
+        jTFPrograma.setBounds(260, 190, 250, 30);
+
+        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButton3.setText("LIMPIAR");
+        jPanelRegistro.add(jButton3);
+        jButton3.setBounds(290, 240, 100, 35);
+
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButton4.setText("REGISTAR");
+        jPanelRegistro.add(jButton4);
+        jButton4.setBounds(170, 240, 100, 35);
+
+        jTabbedPane1.addTab("Registar", jPanelRegistro);
+
+        add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 50, 580, 450);
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox jCBSexo;
+    private javax.swing.JLabel jLCodigo;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLPrograma;
+    private javax.swing.JLabel jLSexo;
+    private javax.swing.JLabel jLabelRegistar;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelRegistro;
+    private javax.swing.JTextField jTFCodigo;
+    private javax.swing.JTextField jTFNombre;
+    private javax.swing.JTextField jTFPrograma;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
