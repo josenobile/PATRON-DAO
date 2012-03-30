@@ -40,7 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(5, 180, 200, 35);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(5, 170, 200, 10);
+        jSeparator1.setBounds(5, 170, 200, 6);
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
         jButton1.setText("Estudiantes");
@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(210, 0, 50, 600);
+        jSeparator2.setBounds(210, 0, 6, 500);
         jPanel1.add(jSeparator3);
         jSeparator3.setBounds(5, 120, 200, 6);
         jPanel1.add(jSeparator4);
@@ -65,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelLogo.setBounds(70, 10, 72, 100);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 220, 600);
+        jPanel1.setBounds(0, 0, 220, 500);
 
         jMenuFile.setText("File");
         jMenuBar1.add(jMenuFile);
@@ -79,10 +79,14 @@ public class MainFrame extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-810)/2, (screenSize.height-630)/2, 810, 630);
+        setBounds((screenSize.width-810)/2, (screenSize.height-530)/2, 810, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        JPanelEstudiantes panelEstudiantes = new JPanelEstudiantes();
+        getContentPane().add(panelEstudiantes);
+        panelEstudiantes.setBounds(220, 0, 580, 500);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
