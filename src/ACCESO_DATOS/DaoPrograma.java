@@ -27,6 +27,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DaoPrograma {
 
@@ -58,7 +61,7 @@ public class DaoPrograma {
         }
 
         return -1;
-    }    // fin guardar
+    }
 
     public Programa consultarPrograma(String codigo) {
         Programa p = new Programa();
@@ -68,9 +71,7 @@ public class DaoPrograma {
 
         try {
             Connection conn = fachada.conectar();
-
             System.out.println("consultando en la bd");
-
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
 
@@ -98,6 +99,48 @@ public class DaoPrograma {
     }
 
     public void borrarPrograma(int codigoPrograma) {
+    }
+
+    public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
+
+        ArrayList<Programa> programasConsulta = new ArrayList<Programa>();
+
+        String sql_select = "SELECT * FROM programa";
+        if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
+            sql_select += "WHERE ";
+        }
+        if (!codigo.isEmpty()) {
+            sql_select += "codigo = " + codigo + " AND ";
+        }
+        if (!nombre.isEmpty()) {
+            sql_select += "nombre LIKE = '" + nombre + "' AND ";
+        }
+        if (!nivel.isEmpty()) {
+            sql_select += "nivel  = '" + nivel + "' AND ";
+        }
+
+        sql_select = sql_select.substring(0, sql_select.length() - 5);
+
+        try {
+            Connection conn = fachada.conectar();
+            System.out.println("consultando en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+
+            int counter = 0;
+            while (tabla.next()) {
+                programasConsulta.add(new Programa());
+                programasConsulta.get(counter).setCodigo(tabla.getString(1));
+                programasConsulta.get(counter).setNombre(tabla.getString(2));
+                programasConsulta.get(counter).setNivel(tabla.getString(3));
+                programasConsulta.get(counter).setCreditos(tabla.getInt(4));
+                System.out.println(counter + " ok");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return programasConsulta;
     }
 }
 

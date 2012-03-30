@@ -49,8 +49,8 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNombre = new javax.swing.JTextField();
         jTFNivel = new javax.swing.JTextField();
         jTFNumCreditos = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonLimpiarR = new javax.swing.JButton();
+        jButtonRegistar = new javax.swing.JButton();
         jPanelConsulta = new javax.swing.JPanel();
         jLabelRegistar1 = new javax.swing.JLabel();
         jLCodigo1 = new javax.swing.JLabel();
@@ -61,8 +61,8 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNombre1 = new javax.swing.JTextField();
         jTFNivel1 = new javax.swing.JTextField();
         jTFNumCreditos1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButtonLimpiarC = new javax.swing.JButton();
+        jButtonConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableResultados = new javax.swing.JTable();
 
@@ -110,25 +110,25 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jPanelRegistro.add(jTFNumCreditos);
         jTFNumCreditos.setBounds(260, 190, 250, 30);
 
-        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton3.setText("LIMPIAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpiarR.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonLimpiarR.setText("LIMPIAR");
+        jButtonLimpiarR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonLimpiarRActionPerformed(evt);
             }
         });
-        jPanelRegistro.add(jButton3);
-        jButton3.setBounds(290, 240, 100, 35);
+        jPanelRegistro.add(jButtonLimpiarR);
+        jButtonLimpiarR.setBounds(290, 240, 100, 35);
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton4.setText("REGISTAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonRegistar.setText("REGISTAR");
+        jButtonRegistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonRegistarActionPerformed(evt);
             }
         });
-        jPanelRegistro.add(jButton4);
-        jButton4.setBounds(170, 240, 100, 35);
+        jPanelRegistro.add(jButtonRegistar);
+        jButtonRegistar.setBounds(170, 240, 100, 35);
 
         jTabbedPane1.addTab("Registar", jPanelRegistro);
 
@@ -168,25 +168,25 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jPanelConsulta.add(jTFNumCreditos1);
         jTFNumCreditos1.setBounds(200, 190, 200, 30);
 
-        jButton5.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton5.setText("LIMPIAR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpiarC.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonLimpiarC.setText("LIMPIAR");
+        jButtonLimpiarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonLimpiarCActionPerformed(evt);
             }
         });
-        jPanelConsulta.add(jButton5);
-        jButton5.setBounds(420, 150, 140, 35);
+        jPanelConsulta.add(jButtonLimpiarC);
+        jButtonLimpiarC.setBounds(420, 150, 140, 35);
 
-        jButton6.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton6.setText("CONSULTAR");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonConsultar.setText("CONSULTAR");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonConsultarActionPerformed(evt);
             }
         });
-        jPanelConsulta.add(jButton6);
-        jButton6.setBounds(420, 100, 140, 35);
+        jPanelConsulta.add(jButtonConsultar);
+        jButtonConsultar.setBounds(420, 100, 140, 35);
 
         jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,7 +215,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTabbedPane1.setBounds(0, 50, 580, 450);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarActionPerformed
 
         controladorPrograma.insertarPrograma(
                 jTFNombre.getText(),
@@ -224,23 +224,23 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
                 Integer.parseInt(jTFNumCreditos.getText()));
         
         limpiarCamposRegistro();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonRegistarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonLimpiarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarRActionPerformed
 
         limpiarCamposRegistro();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
        
-        jTableResultados.setModel(null);
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+        
+    }//GEN-LAST:event_jButtonLimpiarCActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
         
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
+        jTableResultados.setModel(null);
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     public void limpiarCamposRegistro() {
         jTFCodigo.setText("");
@@ -249,10 +249,10 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNumCreditos.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonLimpiarC;
+    private javax.swing.JButton jButtonLimpiarR;
+    private javax.swing.JButton jButtonRegistar;
     private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLCodigo1;
     private javax.swing.JLabel jLNivel;
