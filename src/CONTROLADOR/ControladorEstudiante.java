@@ -19,7 +19,7 @@ public class ControladorEstudiante {
 
         Programa programa = new DaoPrograma().consultarPrograma(codPrograma);
         
-        char sex = sexo.toCharArray()[1];
+        char sex = sexo.toCharArray()[0];
 
         e.setCodigo(codigo);
         e.setNombre(nombre);
