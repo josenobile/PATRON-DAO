@@ -2,7 +2,7 @@
 // DESARROLLO DE SOFTWARE II
 // TALLER: PATRON-DAO
 //
-// ARCHIVO: JPanelEstudiantes.java
+// ARCHIVO: JPanelProgramaAcademico.java
 //
 // FECHA:12/03/30
 //
@@ -24,11 +24,11 @@ package GUI;
 
 import CONTROLADOR.ControladorEstudiante;
 
-public class JPanelEstudiantes extends javax.swing.JPanel {
+public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
     ControladorEstudiante controladorEstudiante;
     
-    public JPanelEstudiantes() {
+    public JPanelProgramaAcademico() {
         
         controladorEstudiante = new ControladorEstudiante();
         initComponents();
