@@ -103,9 +103,9 @@ public class DaoPrograma {
 
     public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
 
-        ArrayList<Programa> programasConsulta = new ArrayList<Programa>();
+        ArrayList<Programa> programasConsulta = new ArrayList<>();
 
-        String sql_select = "SELECT * FROM programa";
+        String sql_select = "SELECT * FROM programa     ";
         if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
             sql_select += "WHERE ";
         }
@@ -119,7 +119,9 @@ public class DaoPrograma {
             sql_select += "nivel  = '" + nivel + "' AND ";
         }
 
+        
         sql_select = sql_select.substring(0, sql_select.length() - 5);
+        System.out.println("Consulta: "+sql_select);
 
         try {
             Connection conn = fachada.conectar();
@@ -131,10 +133,15 @@ public class DaoPrograma {
             while (tabla.next()) {
                 programasConsulta.add(new Programa());
                 programasConsulta.get(counter).setCodigo(tabla.getString(1));
+                System.out.println("Codigo: "+programasConsulta.get(counter).getCodigo());
                 programasConsulta.get(counter).setNombre(tabla.getString(2));
+                System.out.println("Nombre: "+programasConsulta.get(counter).getNombre());
                 programasConsulta.get(counter).setNivel(tabla.getString(3));
+                System.out.println("Nivel: "+programasConsulta.get(counter).getNivel());
                 programasConsulta.get(counter).setCreditos(tabla.getInt(4));
+                System.out.println("Creditos: "+programasConsulta.get(counter).getCreditos());
                 System.out.println(counter + " ok");
+                counter++;
             }
 
         } catch (SQLException ex) {

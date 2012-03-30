@@ -19,20 +19,20 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package CONTROLADOR;
 
 //~--- non-JDK imports --------------------------------------------------------
-
 import ACCESO_DATOS.DaoPrograma;
 
 import LOGICA.Programa;
+import java.util.ArrayList;
 
 //~--- JDK imports ------------------------------------------------------------
 
 import java.util.Vector;
 
 public class ControladorProgramaAcademico {
+
     DaoPrograma daoPrograma;
 
     public ControladorProgramaAcademico() {
@@ -68,7 +68,19 @@ public class ControladorProgramaAcademico {
 //
 //        return v;
 //    }
+    public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
 
+        ArrayList<Programa> consulta = daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
+        Object resultado[][] = new Object[consulta.size()][4];
+
+        for (int i = 0; i < resultado.length; i++) {
+            resultado[i][0] = consulta.get(i).getCodigo().toString();
+            resultado[i][1] = consulta.get(i).getNombre().toString();
+            resultado[i][2] = consulta.get(i).getNivel().toString();
+            resultado[i][3] = Integer.toString(consulta.get(i).getCreditos());
+        }
+        return resultado;
+    }
 }
 
 

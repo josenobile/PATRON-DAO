@@ -219,10 +219,10 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         controladorPrograma.insertarPrograma(
                 jTFNombre.getText(),
-                jTFCodigo.getText(), 
-                jTFNivel.getText(), 
+                jTFCodigo.getText(),
+                jTFNivel.getText(),
                 Integer.parseInt(jTFNumCreditos.getText()));
-        
+
         limpiarCamposRegistro();
     }//GEN-LAST:event_jButtonRegistarActionPerformed
 
@@ -232,14 +232,31 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
     private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
-       
-        
-        
     }//GEN-LAST:event_jButtonLimpiarCActionPerformed
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-        
-        jTableResultados.setModel(null);
+
+
+        Object programas[][] = controladorPrograma.consultarProgramas(
+                jTFCodigo1.getText(),
+                jTFNombre1.getText(),
+                jTFNivel1.getText(),
+                jTFNumCreditos1.getText());
+
+        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
+                programas,
+                new String[]{
+                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
+                }) {
+
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     public void limpiarCamposRegistro() {
