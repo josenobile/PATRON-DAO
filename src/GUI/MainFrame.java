@@ -110,6 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
 
+        //@FIXME 
         getContentPane().remove(panelPrograma);
         getContentPane().add(panelEstudiantes);
         panelEstudiantes.setBounds(220, 0, 580, 500);
@@ -117,7 +118,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEstudiantesActionPerformed
 
     private void jButtonProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProgramaActionPerformed
-
+        
+        //@FIXME 
         getContentPane().remove(panelEstudiantes);
         getContentPane().add(panelPrograma);
         panelPrograma.setBounds(220, 0, 580, 500);
