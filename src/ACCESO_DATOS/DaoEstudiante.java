@@ -26,9 +26,6 @@ package ACCESO_DATOS;
 
 import LOGICA.Estudiante;
 import LOGICA.Programa;
-
-//~--- JDK imports ------------------------------------------------------------
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
