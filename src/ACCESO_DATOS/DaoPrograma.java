@@ -45,7 +45,7 @@ public class DaoPrograma {
 
         sql_guardar = "INSERT INTO programa VALUES ('" + p.getCodigo() + "', '" + p.getNombre() + "', '" + p.getNivel()
                 + "', " + p.getCreditos() + ")";
-
+        
         try {
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
@@ -94,13 +94,7 @@ public class DaoPrograma {
 
         return null;
     }
-
-    public void modificarPrograma(int codigoPrograma) {
-    }
-
-    public void borrarPrograma(int codigoPrograma) {
-    }
-
+    
     public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
 
         ArrayList<Programa> programasConsulta = new ArrayList<>();
@@ -152,4 +146,12 @@ public class DaoPrograma {
         }
         return programasConsulta;
     }
+
+    public void modificarPrograma(int codigoPrograma) {
+        
+    }
+
+    public void borrarPrograma(int codigoPrograma) {
+    }
+
 }

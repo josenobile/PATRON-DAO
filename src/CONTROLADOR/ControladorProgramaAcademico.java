@@ -34,6 +34,8 @@ import java.util.Vector;
 public class ControladorProgramaAcademico {
 
     DaoPrograma daoPrograma;
+    Programa seleccionadoParaEditar;
+    ArrayList<Programa> ultimaConsulta;
 
     public ControladorProgramaAcademico() {
         daoPrograma = new DaoPrograma();
@@ -53,34 +55,45 @@ public class ControladorProgramaAcademico {
         System.out.println("Se va a insertó  un  nuevo programa");
     }    // end
 
-//    public Vector consultarPrograma(String codigo) {
-//        Vector   v = new Vector();
-//        Programa p = new Programa();
-//
-//        System.out.println("Se va a consultar un programa");
-//        p = daoPrograma.consultarPrograma(codigo);
-//
-//        // se asignan datos al vector
-//        v.add(p.getCodigo());
-//        v.add(p.getNombre());
-//        v.add(p.getNivel());
-//        v.add(p.getCreditos());
-//
-//        return v;
-//    }
     public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
 
-        ArrayList<Programa> consulta = daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
-        Object resultado[][] = new Object[consulta.size()][4];
+        ultimaConsulta= daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
+        Object resultado[][] = new Object[ultimaConsulta.size()][4];
 
         for (int i = 0; i < resultado.length; i++) {
-            resultado[i][0] = consulta.get(i).getCodigo().toString();
-            resultado[i][1] = consulta.get(i).getNombre().toString();
-            resultado[i][2] = consulta.get(i).getNivel().toString();
-            resultado[i][3] = Integer.toString(consulta.get(i).getCreditos());
+            resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
+            resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
+            resultado[i][2] = ultimaConsulta.get(i).getNivel().toString();
+            resultado[i][3] = Integer.toString(ultimaConsulta.get(i).getCreditos());
         }
         return resultado;
     }
+
+    public String[] programaSeleccionado(int seleccionado) {
+        
+        String programa[]= new String[4]; 
+        seleccionadoParaEditar=ultimaConsulta.get(seleccionado);
+    
+        programa[0]=seleccionadoParaEditar.getCodigo();
+        programa[1]=seleccionadoParaEditar.getNombre();
+        programa[2]=seleccionadoParaEditar.getNivel();
+        programa[3]=Integer.toString(seleccionadoParaEditar.getCreditos());
+        
+        return programa;
+        
+    }
+
+    public void actualizarPrograma(String nombre, String nivel, int creditos) {
+        
+        seleccionadoParaEditar.setNombre(nombre);
+        seleccionadoParaEditar.setNivel(nivel);
+        seleccionadoParaEditar.setCreditos(creditos);
+        
+        
+    }
+
+    
+
 }
 
 
