@@ -63,8 +63,22 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNumCreditos1 = new javax.swing.JTextField();
         jButtonLimpiarC = new javax.swing.JButton();
         jButtonConsultar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableResultados = new javax.swing.JTable();
+        jPanelEditar = new javax.swing.JPanel();
+        jLabelRegistar3 = new javax.swing.JLabel();
+        jLCodigo3 = new javax.swing.JLabel();
+        jLNombre3 = new javax.swing.JLabel();
+        jLNivel3 = new javax.swing.JLabel();
+        jLNumCreditos3 = new javax.swing.JLabel();
+        jTFCodigo3 = new javax.swing.JTextField();
+        jTFNombre3 = new javax.swing.JTextField();
+        jTFNivel3 = new javax.swing.JTextField();
+        jTFNumCreditos3 = new javax.swing.JTextField();
+        jButtonLimpiarE = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -176,7 +190,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
             }
         });
         jPanelConsulta.add(jButtonLimpiarC);
-        jButtonLimpiarC.setBounds(420, 150, 140, 35);
+        jButtonLimpiarC.setBounds(420, 180, 140, 35);
 
         jButtonConsultar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jButtonConsultar.setText("CONSULTAR");
@@ -188,6 +202,16 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jPanelConsulta.add(jButtonConsultar);
         jButtonConsultar.setBounds(420, 100, 140, 35);
 
+        jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonEditar.setText("EDITAR");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+        jPanelConsulta.add(jButtonEditar);
+        jButtonEditar.setBounds(420, 140, 140, 35);
+
         jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,12 +220,12 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
                 "Codigo", "Nombre", "Nivel", "Numero Creditos"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTableResultados);
@@ -211,9 +235,107 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Consultar", jPanelConsulta);
 
+        jPanelEditar.setLayout(null);
+
+        jLabelRegistar3.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabelRegistar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRegistar3.setText("Editar Programa Academico");
+        jPanelEditar.add(jLabelRegistar3);
+        jLabelRegistar3.setBounds(0, 10, 580, 40);
+
+        jLCodigo3.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLCodigo3.setText("Codigo");
+        jPanelEditar.add(jLCodigo3);
+        jLCodigo3.setBounds(50, 70, 200, 30);
+
+        jLNombre3.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNombre3.setText("Nombre");
+        jPanelEditar.add(jLNombre3);
+        jLNombre3.setBounds(50, 110, 200, 30);
+
+        jLNivel3.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNivel3.setText("Nivel");
+        jPanelEditar.add(jLNivel3);
+        jLNivel3.setBounds(50, 150, 200, 30);
+
+        jLNumCreditos3.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLNumCreditos3.setText("Numero de Creditos");
+        jPanelEditar.add(jLNumCreditos3);
+        jLNumCreditos3.setBounds(50, 190, 200, 30);
+
+        jTFCodigo3.setEnabled(false);
+        jPanelEditar.add(jTFCodigo3);
+        jTFCodigo3.setBounds(260, 70, 250, 30);
+        jPanelEditar.add(jTFNombre3);
+        jTFNombre3.setBounds(260, 110, 250, 30);
+        jPanelEditar.add(jTFNivel3);
+        jTFNivel3.setBounds(260, 150, 250, 30);
+        jPanelEditar.add(jTFNumCreditos3);
+        jTFNumCreditos3.setBounds(260, 190, 250, 30);
+
+        jButtonLimpiarE.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonLimpiarE.setText("LIMPIAR");
+        jButtonLimpiarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarEActionPerformed(evt);
+            }
+        });
+        jPanelEditar.add(jButtonLimpiarE);
+        jButtonLimpiarE.setBounds(340, 250, 130, 35);
+
+        jButtonEliminar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonEliminar.setText("ELIMINAR");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+        jPanelEditar.add(jButtonEliminar);
+        jButtonEliminar.setBounds(200, 250, 130, 35);
+
+        jButtonActualizar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButtonActualizar.setText("ACTUALIZAR");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+        jPanelEditar.add(jButtonActualizar);
+        jButtonActualizar.setBounds(60, 250, 130, 35);
+
+        jTabbedPane1.addTab("Editar", jPanelEditar);
+
         add(jTabbedPane1);
         jTabbedPane1.setBounds(0, 50, 580, 450);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+
+        Object programas[][] = controladorPrograma.consultarProgramas(
+                jTFCodigo1.getText(),
+                jTFNombre1.getText(),
+                jTFNivel1.getText(),
+                jTFNumCreditos1.getText());
+
+        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
+                programas,
+                new String[]{
+                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
+                }) {
+
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
+
+    private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
+        limpiarCamposConsulta();
+   }//GEN-LAST:event_jButtonLimpiarCActionPerformed
 
     private void jButtonRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarActionPerformed
 
@@ -231,33 +353,21 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         limpiarCamposRegistro();
     }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
-    private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
-    }//GEN-LAST:event_jButtonLimpiarCActionPerformed
+    private void jButtonLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLimpiarEActionPerformed
 
-    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
-        Object programas[][] = controladorPrograma.consultarProgramas(
-                jTFCodigo1.getText(),
-                jTFNombre1.getText(),
-                jTFNivel1.getText(),
-                jTFNumCreditos1.getText());
-
-        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
-                programas,
-                new String[]{
-                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
-                }) {
-
-            Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        });
-    }//GEN-LAST:event_jButtonConsultarActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     public void limpiarCamposRegistro() {
         jTFCodigo.setText("");
@@ -265,33 +375,60 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNivel.setText("");
         jTFNumCreditos.setText("");
     }
+
+    public void limpiarCamposConsulta() {
+        jTFCodigo1.setText("");
+        jTFNombre1.setText("");
+        jTFNivel1.setText("");
+        jTFNumCreditos1.setText("");
+
+        jTableResultados.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
+                }));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonLimpiarC;
+    private javax.swing.JButton jButtonLimpiarE;
     private javax.swing.JButton jButtonLimpiarR;
     private javax.swing.JButton jButtonRegistar;
     private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLCodigo1;
+    private javax.swing.JLabel jLCodigo3;
     private javax.swing.JLabel jLNivel;
     private javax.swing.JLabel jLNivel1;
+    private javax.swing.JLabel jLNivel3;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLNombre1;
+    private javax.swing.JLabel jLNombre3;
     private javax.swing.JLabel jLNumCreditos;
     private javax.swing.JLabel jLNumCreditos1;
+    private javax.swing.JLabel jLNumCreditos3;
     private javax.swing.JLabel jLabelRegistar;
     private javax.swing.JLabel jLabelRegistar1;
+    private javax.swing.JLabel jLabelRegistar3;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelConsulta;
+    private javax.swing.JPanel jPanelEditar;
     private javax.swing.JPanel jPanelRegistro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFCodigo1;
+    private javax.swing.JTextField jTFCodigo3;
     private javax.swing.JTextField jTFNivel;
     private javax.swing.JTextField jTFNivel1;
+    private javax.swing.JTextField jTFNivel3;
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFNombre1;
+    private javax.swing.JTextField jTFNombre3;
     private javax.swing.JTextField jTFNumCreditos;
     private javax.swing.JTextField jTFNumCreditos1;
+    private javax.swing.JTextField jTFNumCreditos3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableResultados;
     // End of variables declaration//GEN-END:variables

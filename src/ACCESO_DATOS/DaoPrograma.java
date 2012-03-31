@@ -110,18 +110,21 @@ public class DaoPrograma {
             sql_select += "WHERE ";
         }
         if (!codigo.isEmpty()) {
-            sql_select += "codigo = " + codigo + " AND ";
+            sql_select += "codigo = '" + codigo + "' AND ";
         }
         if (!nombre.isEmpty()) {
-            sql_select += "nombre LIKE = '" + nombre + "' AND ";
+            sql_select += "nombre LIKE '%" + nombre + "%' AND ";
         }
         if (!nivel.isEmpty()) {
-            sql_select += "nivel  = '" + nivel + "' AND ";
+            sql_select += "nivel LIKE '%" + nivel + "%' AND ";
+        }
+        if (!numCreditos.isEmpty()) {
+            sql_select += "num_creditos = " + numCreditos + " AND ";
         }
 
-        
+
         sql_select = sql_select.substring(0, sql_select.length() - 5);
-        System.out.println("Consulta: "+sql_select);
+        System.out.println("Consulta: " + sql_select);
 
         try {
             Connection conn = fachada.conectar();
@@ -133,13 +136,13 @@ public class DaoPrograma {
             while (tabla.next()) {
                 programasConsulta.add(new Programa());
                 programasConsulta.get(counter).setCodigo(tabla.getString(1));
-                System.out.println("Codigo: "+programasConsulta.get(counter).getCodigo());
+                System.out.println("Codigo: " + programasConsulta.get(counter).getCodigo());
                 programasConsulta.get(counter).setNombre(tabla.getString(2));
-                System.out.println("Nombre: "+programasConsulta.get(counter).getNombre());
+                System.out.println("Nombre: " + programasConsulta.get(counter).getNombre());
                 programasConsulta.get(counter).setNivel(tabla.getString(3));
-                System.out.println("Nivel: "+programasConsulta.get(counter).getNivel());
+                System.out.println("Nivel: " + programasConsulta.get(counter).getNivel());
                 programasConsulta.get(counter).setCreditos(tabla.getInt(4));
-                System.out.println("Creditos: "+programasConsulta.get(counter).getCreditos());
+                System.out.println("Creditos: " + programasConsulta.get(counter).getCreditos());
                 System.out.println(counter + " ok");
                 counter++;
             }
@@ -150,6 +153,3 @@ public class DaoPrograma {
         return programasConsulta;
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
