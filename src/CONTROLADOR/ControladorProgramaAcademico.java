@@ -89,6 +89,7 @@ public class ControladorProgramaAcademico {
         seleccionadoParaEditar.setNivel(nivel);
         seleccionadoParaEditar.setCreditos(creditos);
         
+        daoPrograma.modificarPrograma(seleccionadoParaEditar);
         
     }
 

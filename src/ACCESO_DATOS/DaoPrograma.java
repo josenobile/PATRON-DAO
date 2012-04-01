@@ -45,7 +45,7 @@ public class DaoPrograma {
 
         sql_guardar = "INSERT INTO programa VALUES ('" + p.getCodigo() + "', '" + p.getNombre() + "', '" + p.getNivel()
                 + "', " + p.getCreditos() + ")";
-        
+
         try {
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
@@ -94,7 +94,7 @@ public class DaoPrograma {
 
         return null;
     }
-    
+
     public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
 
         ArrayList<Programa> programasConsulta = new ArrayList<>();
@@ -147,11 +147,23 @@ public class DaoPrograma {
         return programasConsulta;
     }
 
-    public void modificarPrograma(int codigoPrograma) {
-        
+    public void modificarPrograma(Programa seleccionadoParaEditar) {
+        try {
+            String sql_guardar = "UPDATE programa";
+            sql_guardar += " set codigo = '" + seleccionadoParaEditar.getCodigo() + "'";
+            sql_guardar += " set  nombre + '" + seleccionadoParaEditar.getNivel() + "'";
+            sql_guardar += " set nivel = '" + seleccionadoParaEditar.getNivel() + "'";
+            sql_guardar += " set num_creditos = '" + seleccionadoParaEditar.getCreditos() + "'";
+
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
+            sentencia.executeUpdate(sql_guardar);
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void borrarPrograma(int codigoPrograma) {
     }
-
 }

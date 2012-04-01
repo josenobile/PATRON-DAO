@@ -364,9 +364,9 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
        
         controladorPrograma.actualizarPrograma(
-                jTFNombre.getText(),
-                jTFNivel.getText(),
-                Integer.parseInt(jTFNumCreditos.getText()));
+                jTFNombre3.getText(),
+                jTFNivel3.getText(),
+                Integer.parseInt(jTFNumCreditos3.getText()));
 
         limpiarCamposEdicion();
         
