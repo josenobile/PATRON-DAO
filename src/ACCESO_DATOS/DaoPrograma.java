@@ -148,16 +148,25 @@ public class DaoPrograma {
     }
 
     public void modificarPrograma(Programa seleccionadoParaEditar) {
+
+        System.out.println("Dentro del DAO");
+        System.out.println("Progama Seleccionado: ");
+        System.out.println("Codigo: " + seleccionadoParaEditar.getCodigo());
+        System.out.println("Nombre: " + seleccionadoParaEditar.getNombre());
+        System.out.println("Nivel: " + seleccionadoParaEditar.getNivel());
+        System.out.println("Creditos: " + seleccionadoParaEditar.getCreditos());
+
         try {
-            String sql_guardar = "UPDATE programa";
-            sql_guardar += " set codigo = '" + seleccionadoParaEditar.getCodigo() + "'";
-            sql_guardar += " set  nombre + '" + seleccionadoParaEditar.getNivel() + "'";
-            sql_guardar += " set nivel = '" + seleccionadoParaEditar.getNivel() + "'";
-            sql_guardar += " set num_creditos = '" + seleccionadoParaEditar.getCreditos() + "'";
+            String sql_modificar = "UPDATE programa";
+            sql_modificar += " set nombre = '" + seleccionadoParaEditar.getNombre() + "',";
+            sql_modificar += " nivel = '" + seleccionadoParaEditar.getNivel() + "',";
+            sql_modificar += " num_creditos = '" + seleccionadoParaEditar.getCreditos() + "'";
+            sql_modificar += " WHERE codigo = '" + seleccionadoParaEditar.getCodigo()+"'";
 
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
-            sentencia.executeUpdate(sql_guardar);
+            System.out.println("SQL: "+sql_modificar);
+            sentencia.executeUpdate(sql_modificar);
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);

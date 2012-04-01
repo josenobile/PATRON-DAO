@@ -87,8 +87,15 @@ public class ControladorProgramaAcademico {
         
         seleccionadoParaEditar.setNombre(nombre);
         seleccionadoParaEditar.setNivel(nivel);
-        seleccionadoParaEditar.setCreditos(creditos);
+        seleccionadoParaEditar.setCreditos(creditos);  
         
+        System.out.println("Dentro del contorlador");
+        System.out.println("Progama Seleccionado: ");
+        System.out.println("Codigo: "+seleccionadoParaEditar.getCodigo());
+        System.out.println("Nombre: "+seleccionadoParaEditar.getNombre());
+        System.out.println("Nivel: "+seleccionadoParaEditar.getNivel());
+        System.out.println("Creditos: "+seleccionadoParaEditar.getCreditos());
+               
         daoPrograma.modificarPrograma(seleccionadoParaEditar);
         
     }
