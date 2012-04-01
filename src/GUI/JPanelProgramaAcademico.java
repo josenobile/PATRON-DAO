@@ -22,7 +22,6 @@
 package GUI;
 
 import CONTROLADOR.ControladorProgramaAcademico;
-import javax.swing.JOptionPane;
 
 public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
@@ -32,8 +31,9 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         controladorPrograma = new ControladorProgramaAcademico();
         initComponents();
+        jTabbedPane1.setEnabledAt(2, false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -354,31 +354,30 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
     private void jButtonLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarEActionPerformed
-
-        
     }//GEN-LAST:event_jButtonLimpiarEActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
 
-        
+        controladorPrograma.eliminarPrograma();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-       
         controladorPrograma.actualizarPrograma(
                 jTFNombre3.getText(),
                 jTFNivel3.getText(),
                 Integer.parseInt(jTFNumCreditos3.getText()));
-
         limpiarCamposEdicion();
         
+        jTabbedPane1.setSelectedIndex(1);
+        
+
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
 
-        int seleccionado=jTableResultados.getSelectedRow();
-        if(seleccionado>=0){         
-            String programa[]= controladorPrograma.programaSeleccionado(seleccionado);
+        int seleccionado = jTableResultados.getSelectedRow();
+        if (seleccionado >= 0) {
+            String programa[] = controladorPrograma.programaSeleccionado(seleccionado);
             jTabbedPane1.setSelectedIndex(2);
             jTFCodigo3.setText(programa[0]);
             jTFNombre3.setText(programa[1]);
@@ -393,8 +392,8 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         jTFNivel.setText("");
         jTFNumCreditos.setText("");
     }
-    
-     public void limpiarCamposEdicion() {
+
+    public void limpiarCamposEdicion() {
         jTFCodigo3.setText("");
         jTFNombre3.setText("");
         jTFNivel3.setText("");
@@ -413,7 +412,6 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
                     "Codigo", "Nombre", "Nivel", "Numero Creditos"
                 }));
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonConsultar;
@@ -458,6 +456,4 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableResultados;
     // End of variables declaration//GEN-END:variables
-
-  
 }

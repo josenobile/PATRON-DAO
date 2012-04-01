@@ -100,6 +100,10 @@ public class ControladorProgramaAcademico {
         
     }
 
+    public void eliminarPrograma() {
+        daoPrograma.eliminarPrograma(seleccionadoParaEditar);
+    }
+
     
 
 }

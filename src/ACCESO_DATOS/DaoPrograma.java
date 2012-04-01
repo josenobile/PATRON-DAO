@@ -147,25 +147,25 @@ public class DaoPrograma {
         return programasConsulta;
     }
 
-    public void modificarPrograma(Programa seleccionadoParaEditar) {
+    public void modificarPrograma(Programa programa) {
 
         System.out.println("Dentro del DAO");
         System.out.println("Progama Seleccionado: ");
-        System.out.println("Codigo: " + seleccionadoParaEditar.getCodigo());
-        System.out.println("Nombre: " + seleccionadoParaEditar.getNombre());
-        System.out.println("Nivel: " + seleccionadoParaEditar.getNivel());
-        System.out.println("Creditos: " + seleccionadoParaEditar.getCreditos());
+        System.out.println("Codigo: " + programa.getCodigo());
+        System.out.println("Nombre: " + programa.getNombre());
+        System.out.println("Nivel: " + programa.getNivel());
+        System.out.println("Creditos: " + programa.getCreditos());
 
         try {
             String sql_modificar = "UPDATE programa";
-            sql_modificar += " set nombre = '" + seleccionadoParaEditar.getNombre() + "',";
-            sql_modificar += " nivel = '" + seleccionadoParaEditar.getNivel() + "',";
-            sql_modificar += " num_creditos = '" + seleccionadoParaEditar.getCreditos() + "'";
-            sql_modificar += " WHERE codigo = '" + seleccionadoParaEditar.getCodigo()+"'";
+            sql_modificar += " set nombre = '" + programa.getNombre() + "',";
+            sql_modificar += " nivel = '" + programa.getNivel() + "',";
+            sql_modificar += " num_creditos = '" + programa.getCreditos() + "'";
+            sql_modificar += " WHERE codigo = '" + programa.getCodigo() + "'";
 
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
-            System.out.println("SQL: "+sql_modificar);
+            System.out.println("SQL: " + sql_modificar);
             sentencia.executeUpdate(sql_modificar);
             conn.close();
         } catch (SQLException ex) {
@@ -173,6 +173,19 @@ public class DaoPrograma {
         }
     }
 
-    public void borrarPrograma(int codigoPrograma) {
+    public void eliminarPrograma(Programa Programa) {
+      
+        try {
+            String sql_modificar = "DELETE FROM programa";
+            sql_modificar += " WHERE codigo = '" + Programa.getCodigo() + "'";
+
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
+            System.out.println("SQL: " + sql_modificar);
+            sentencia.executeUpdate(sql_modificar);
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
