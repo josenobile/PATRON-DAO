@@ -76,6 +76,3 @@ public class FachadaBD {
         }
     }
 }    // end class
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

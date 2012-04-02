@@ -31,7 +31,7 @@ public class ControladorEstudiante {
 
     DaoEstudiante daoEstudiante;
     Programa seleccionarPrograma;
-    ArrayList<Programa> ultimaConsulta;
+    ArrayList<Estudiante> ultimaConsulta;
 
     public ControladorEstudiante() {
         daoEstudiante = new DaoEstudiante();
@@ -44,9 +44,15 @@ public class ControladorEstudiante {
             estudiante.setCodigo(codigo);
             estudiante.setNombre(nombre);
             estudiante.setSexo(sexo.toCharArray()[0]);
-            estudiante.setPrograma(new DaoPrograma().consultarPrograma(programa));
-            daoEstudiante.guardarEstudiante(estudiante);
-            System.out.println("Se va a insertó  un  nuevo programa");
+            estudiante.setPrograma(new DaoPrograma().consultarPrograma(programa.split(" -")[0]));
+
+            System.out.println("Codigo Programa: " + estudiante.getPrograma().getCodigo());
+            if (daoEstudiante.guardarEstudiante(estudiante)==-1) {
+             return "No es posible registrar el Estudiante:\n"
+                     + "(1) Verifique la conexion con la base de datos no tenga problemas.\n"
+                     + "(2) O que el Estudiante no se encuentre ya registrado";  
+            }
+            System.out.println("Se insertó un nuevo programa");
             return "OK";
         } else {
         }
@@ -61,31 +67,23 @@ public class ControladorEstudiante {
         programasRegistrados[0] = "";
         for (int i = 0; i < programas.size(); i++) {
             programasRegistrados[i + 1] = programas.get(i).getCodigo() + " - " + programas.get(i).getNombre();
-            System.out.println(i+" "+programasRegistrados[i+1]);
+            System.out.println(i + " " + programasRegistrados[i + 1]);
         }
         return programasRegistrados;
     }
-//    public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
-//
-//        if (!creditos.isEmpty()) {
-//            try {
-//                Integer.parseInt(creditos);
-//            } catch (NumberFormatException numberFormatException) {
-//                return null;
-//            }
-//        }
-//        
-//        ultimaConsulta = daoEstudiante.consultarProgramas(codigo, nombrel, nivel, creditos);
-//        Object resultado[][] = new Object[ultimaConsulta.size()][4];
-//
-//        for (int i = 0; i < resultado.length; i++) {
-//            resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
-//            resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
-//            resultado[i][2] = ultimaConsulta.get(i).getNivel().toString();
-//            resultado[i][3] = Integer.toString(ultimaConsulta.get(i).getCreditos());
-//        }
-//        return resultado;
-//    }
+    public Object[][] consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
+        
+        ultimaConsulta = daoEstudiante.consultarEstudiantes(codigo, nombre, sexo, programa);
+        Object resultado[][] = new Object[ultimaConsulta.size()][4];
+
+        for (int i = 0; i < resultado.length; i++) {
+            resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
+            resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
+            resultado[i][2] = (ultimaConsulta.get(i).getSexo()=='M')? "Masculino" : "Femenino";
+            resultado[i][3] = (ultimaConsulta.get(i).getPrograma().getCodigo());
+        }
+        return resultado;
+    }
 //
 //    public String[] seleccionarPrograma(int seleccionado) {
 //

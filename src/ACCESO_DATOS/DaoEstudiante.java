@@ -48,8 +48,8 @@ public class DaoEstudiante {
 
         try (Connection conn = fachada.conectar()) {
             Statement sentencia = conn.createStatement();
+            System.out.println("SQL: "+sql_guardar);
             numFilas = sentencia.executeUpdate(sql_guardar);
-
             return numFilas;
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);
@@ -88,52 +88,51 @@ public class DaoEstudiante {
 //        return null;
 //    }
 //
-//    public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String nivel, String numCreditos) {
-//
-//        ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
-//
-//        String sql_select = "SELECT * FROM estudiante     ";
-//        if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
-//            sql_select += "WHERE ";
-//        }
-//        if (!codigo.isEmpty()) {
-//            sql_select += "codigo = '" + codigo + "' AND ";
-//        }
-//        if (!nombre.isEmpty()) {
-//            sql_select += "nombre LIKE '%" + nombre + "%' AND ";
-//        }
-//        if (!nivel.isEmpty()) {
-//            sql_select += "nivel LIKE '%" + nivel + "%' AND ";
-//        }
-//        if (!numCreditos.isEmpty()) {
-//            sql_select += "num_creditos = " + numCreditos + " AND ";
-//        }
-//
-//
-//        sql_select = sql_select.substring(0, sql_select.length() - 5);
-//        System.out.println("Consulta: " + sql_select);
-//
-//        try {
-//            Connection conn = fachada.conectar();
-//            System.out.println("consultando en la bd");
-//            Statement sentencia = conn.createStatement();
-//            ResultSet tabla = sentencia.executeQuery(sql_select);
-//
-//            int counter = 0;
-//            while (tabla.next()) {
-//                estudiantesConsulta.add(new Estudiante());
-//                estudiantesConsulta.get(counter).setCodigo(tabla.getString(1));
-//                estudiantesConsulta.get(counter).setNombre(tabla.getString(2));
-//                estudiantesConsulta.get(counter).setNivel(tabla.getString(3));
-//                estudiantesConsulta.get(counter).setCreditos(tabla.getInt(4));
-//                counter++;
-//            }
-//
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException: " + ex);
-//        }
-//        return estudiantesConsulta;
-//    }
+    public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
+
+        ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
+
+        String sql_select = "SELECT * FROM estudiante     ";
+        if (!codigo.isEmpty() || !nombre.isEmpty() || !sexo.isEmpty() || !programa.isEmpty()) {
+            sql_select += "WHERE ";
+        }
+        if (!codigo.isEmpty()) {
+            sql_select += "codigo = '" + codigo + "' AND ";
+        }
+        if (!nombre.isEmpty()) {
+            sql_select += "nombre LIKE '%" + nombre + "%' AND ";
+        }
+        if (!sexo.isEmpty()) {
+            sql_select += "sexo = '" + sexo + "' AND ";
+        }
+        if (!programa.isEmpty()) {
+            sql_select += "codigo_programa = '" + programa + "' AND ";
+        }
+
+        sql_select = sql_select.substring(0, sql_select.length() - 5);
+        System.out.println("Consulta: " + sql_select);
+
+        try {
+            Connection conn = fachada.conectar();
+            System.out.println("SQL Consulta: "+sql_select);
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+
+            int counter = 0;
+            while (tabla.next()) {
+                estudiantesConsulta.add(new Estudiante());
+                estudiantesConsulta.get(counter).setCodigo(tabla.getString(1));
+                estudiantesConsulta.get(counter).setNombre(tabla.getString(2));
+                estudiantesConsulta.get(counter).setSexo(tabla.getString(3).toCharArray()[0]);
+                estudiantesConsulta.get(counter).setPrograma(new DaoPrograma().consultarPrograma(tabla.getString(4)));
+                counter++;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex);
+        }
+        return estudiantesConsulta;
+    }
 //
 //    public void modificarEstudiante(Estudiante estudiante) {
 //

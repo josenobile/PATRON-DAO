@@ -35,19 +35,23 @@ public class ControladorProgramaAcademico {
         daoPrograma = new DaoPrograma();
     }
 
-    public String insertarPrograma( String codigo, String nombre, String nivel, String numCreditos) {
+    public String insertarPrograma(String codigo, String nombre, String nivel, String numCreditos) {
 
         if (!nombre.isEmpty() && !codigo.isEmpty() && !nivel.isEmpty() && !numCreditos.isEmpty()) {
-            Programa p = new Programa();
-            p.setCodigo(codigo);
-            p.setNombre(nombre);
-            p.setNivel(nivel);
+            Programa programa = new Programa();
+            programa.setCodigo(codigo);
+            programa.setNombre(nombre);
+            programa.setNivel(nivel);
             try {
-                p.setCreditos(Integer.parseInt(numCreditos));
+                programa.setCreditos(Integer.parseInt(numCreditos));
             } catch (NumberFormatException numberFormatException) {
                 return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
             }
-            daoPrograma.guardarPrograma(p);
+            if (daoPrograma.guardarPrograma(programa) == -1) {
+                return "No es posible registrar el Programa Academico:\n"
+                        + "(1) Verifique la conexion con la base de datos no tenga problemas.\n"
+                        + "(2) O que el Programa Academico no se encuentre ya registrado";
+            }
             System.out.println("Se va a insertó  un  nuevo programa");
             return "OK";
         } else {
@@ -64,7 +68,7 @@ public class ControladorProgramaAcademico {
                 return null;
             }
         }
-        
+
         ultimaConsulta = daoPrograma.consultarProgramas(codigo, nombre, nivel, creditos);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
 
@@ -93,7 +97,7 @@ public class ControladorProgramaAcademico {
     public String actualizarPrograma(String nombre, String nivel, String creditos) {
 
         if (!nombre.isEmpty() && !nivel.isEmpty() && !creditos.isEmpty()) {
-            
+
             programaSeleccionado.setNombre(nombre);
             programaSeleccionado.setNivel(nivel);
             try {

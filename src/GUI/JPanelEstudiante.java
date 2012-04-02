@@ -63,8 +63,8 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         jLNumCreditos1 = new javax.swing.JLabel();
         jTFCodigo1 = new javax.swing.JTextField();
         jTFNombre1 = new javax.swing.JTextField();
-        jTFNivel1 = new javax.swing.JTextField();
-        jTFNumCreditos1 = new javax.swing.JTextField();
+        jCBSexo1 = new javax.swing.JComboBox();
+        jCBPrograma1 = new javax.swing.JComboBox();
         jButtonLimpiarC = new javax.swing.JButton();
         jButtonConsultar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
@@ -129,9 +129,13 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         jPanelRegistro.add(jCBSexo);
         jCBSexo.setBounds(260, 150, 250, 30);
 
-        jCBPrograma.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jCBProgramaFocusGained(evt);
+        jCBPrograma.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jCBProgramaPopupMenuWillBecomeVisible(evt);
             }
         });
         jPanelRegistro.add(jCBPrograma);
@@ -178,22 +182,34 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         jLNombre1.setBounds(20, 110, 180, 30);
 
         jLNivel1.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jLNivel1.setText("Nivel");
+        jLNivel1.setText("Sexo");
         jPanelConsulta.add(jLNivel1);
         jLNivel1.setBounds(20, 150, 180, 30);
 
         jLNumCreditos1.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
-        jLNumCreditos1.setText("Numero de Creditos");
+        jLNumCreditos1.setText("Codigo Programa");
         jPanelConsulta.add(jLNumCreditos1);
         jLNumCreditos1.setBounds(20, 190, 180, 30);
         jPanelConsulta.add(jTFCodigo1);
         jTFCodigo1.setBounds(200, 70, 200, 30);
         jPanelConsulta.add(jTFNombre1);
         jTFNombre1.setBounds(200, 110, 200, 30);
-        jPanelConsulta.add(jTFNivel1);
-        jTFNivel1.setBounds(200, 150, 200, 30);
-        jPanelConsulta.add(jTFNumCreditos1);
-        jTFNumCreditos1.setBounds(200, 190, 200, 30);
+
+        jCBSexo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Masculino", "Femenino" }));
+        jPanelConsulta.add(jCBSexo1);
+        jCBSexo1.setBounds(200, 150, 200, 30);
+
+        jCBPrograma1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jCBPrograma1PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        jPanelConsulta.add(jCBPrograma1);
+        jCBPrograma1.setBounds(200, 190, 200, 30);
 
         jButtonLimpiarC.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jButtonLimpiarC.setText("LIMPIAR");
@@ -327,30 +343,30 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-//
-//        Object programas[][] = controladorEstudiante.consultarProgramas(
-//                jTFCodigo1.getText(),
-//                jTFNombre1.getText(),
-//                jTFNivel1.getText(),
-//                jTFNumCreditos1.getText());
-//
-//        TableModel myModel = new javax.swing.table.DefaultTableModel(
-//                programas,
-//                new String[]{
-//                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
-//                }) {
-//
-//            boolean[] canEdit = new boolean[]{
-//                false, false, false, false
-//            };
-//
-//            public boolean isCellEditable(int rowIndex, int columnIndex) {
-//                return canEdit[columnIndex];
-//            }
-//        };
-//        
-//        jTableResultados.setModel(myModel);
-//        jTableResultados.setRowSorter(new TableRowSorter(myModel));
+
+        Object programas[][] = controladorEstudiante.consultarEstudiantes(
+                jTFCodigo1.getText(),
+                jTFNombre1.getText(),
+                jCBSexo1.getSelectedItem().toString(),
+                jCBPrograma1.getSelectedItem().toString());
+
+        TableModel myModel = new javax.swing.table.DefaultTableModel(
+                programas,
+                new String[]{
+                    "Codigo", "Nombre", "Sexo", "Programa"
+                }) {
+
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+        
+        jTableResultados.setModel(myModel);
+        jTableResultados.setRowSorter(new TableRowSorter(myModel));
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
@@ -427,11 +443,18 @@ public class JPanelEstudiante extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void jCBProgramaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jCBProgramaFocusGained
+    private void jCBProgramaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBProgramaPopupMenuWillBecomeVisible
         jCBPrograma.setModel(
                 new javax.swing.DefaultComboBoxModel(
                 controladorEstudiante.cargarProgramas()));
-    }//GEN-LAST:event_jCBProgramaFocusGained
+    }//GEN-LAST:event_jCBProgramaPopupMenuWillBecomeVisible
+
+    private void jCBPrograma1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBPrograma1PopupMenuWillBecomeVisible
+        jCBPrograma1.setModel(
+                new javax.swing.DefaultComboBoxModel(
+                controladorEstudiante.cargarProgramas()));
+
+    }//GEN-LAST:event_jCBPrograma1PopupMenuWillBecomeVisible
 
     public void limpiarCamposRegistro() {
         jTFCodigo.setText("");
@@ -450,13 +473,13 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     public void limpiarCamposConsulta() {
         jTFCodigo1.setText("");
         jTFNombre1.setText("");
-        jTFNivel1.setText("");
-        jTFNumCreditos1.setText("");
+        jCBSexo1.setSelectedIndex(0);
+        jCBPrograma1.setSelectedIndex(0);
 
         TableModel myModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Codigo", "Nombre", "Nivel", "Numero Creditos"
+                    "Codigo", "Nombre", "Sexo", "Programa"
                 });
 
         jTableResultados.setModel(myModel);
@@ -472,7 +495,9 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     private javax.swing.JButton jButtonLimpiarR;
     private javax.swing.JButton jButtonRegistar;
     private javax.swing.JComboBox jCBPrograma;
+    private javax.swing.JComboBox jCBPrograma1;
     private javax.swing.JComboBox jCBSexo;
+    private javax.swing.JComboBox jCBSexo1;
     private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLCodigo1;
     private javax.swing.JLabel jLCodigo3;
@@ -497,12 +522,10 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFCodigo1;
     private javax.swing.JTextField jTFCodigo3;
-    private javax.swing.JTextField jTFNivel1;
     private javax.swing.JTextField jTFNivel3;
     private javax.swing.JTextField jTFNombre;
     private javax.swing.JTextField jTFNombre1;
     private javax.swing.JTextField jTFNombre3;
-    private javax.swing.JTextField jTFNumCreditos1;
     private javax.swing.JTextField jTFNumCreditos3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableResultados;

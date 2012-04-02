@@ -19,9 +19,6 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
-
-
 package LOGICA;
 
 public class Estudiante {
@@ -64,6 +61,3 @@ public class Estudiante {
         return sexo;
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
