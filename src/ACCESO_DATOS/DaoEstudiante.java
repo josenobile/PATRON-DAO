@@ -90,10 +90,11 @@ public class DaoEstudiante {
 //
     public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
 
+        System.out.println("Entro al metodo Consultar en el DAO");
         ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
 
         String sql_select = "SELECT * FROM estudiante     ";
-        if (!codigo.isEmpty() || !nombre.isEmpty() || !sexo.isEmpty() || !programa.isEmpty()) {
+        if (!codigo.isEmpty() || !nombre.isEmpty() || !sexo.equals(" ") || !programa.equals(" ")) {
             sql_select += "WHERE ";
         }
         if (!codigo.isEmpty()) {
@@ -102,15 +103,14 @@ public class DaoEstudiante {
         if (!nombre.isEmpty()) {
             sql_select += "nombre LIKE '%" + nombre + "%' AND ";
         }
-        if (!sexo.isEmpty()) {
+        if (!sexo.equals(" ")) {
             sql_select += "sexo = '" + sexo + "' AND ";
         }
-        if (!programa.isEmpty()) {
+        if (!programa.equals(" ")) {
             sql_select += "codigo_programa = '" + programa + "' AND ";
         }
 
         sql_select = sql_select.substring(0, sql_select.length() - 5);
-        System.out.println("Consulta: " + sql_select);
 
         try {
             Connection conn = fachada.conectar();
@@ -125,8 +125,10 @@ public class DaoEstudiante {
                 estudiantesConsulta.get(counter).setNombre(tabla.getString(2));
                 estudiantesConsulta.get(counter).setSexo(tabla.getString(3).toCharArray()[0]);
                 estudiantesConsulta.get(counter).setPrograma(new DaoPrograma().consultarPrograma(tabla.getString(4)));
+                System.out.println("Estudiante: "+(counter+1)+" programa: "+estudiantesConsulta.get(counter).getPrograma().getCodigo());
                 counter++;
             }
+            System.out.println("Estudiantes Encontrados "+estudiantesConsulta.size());
 
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);

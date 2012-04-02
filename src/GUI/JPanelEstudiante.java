@@ -199,6 +199,7 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         jPanelConsulta.add(jCBSexo1);
         jCBSexo1.setBounds(200, 150, 200, 30);
 
+        jCBPrograma1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         jCBPrograma1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }

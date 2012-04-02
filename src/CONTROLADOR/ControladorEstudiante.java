@@ -73,6 +73,8 @@ public class ControladorEstudiante {
     }
     public Object[][] consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
         
+        
+        System.out.println("Entro al metodo Consultar en el controlador");
         ultimaConsulta = daoEstudiante.consultarEstudiantes(codigo, nombre, sexo, programa);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
 
