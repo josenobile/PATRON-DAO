@@ -21,15 +21,12 @@
 //*********************************************************
 package ACCESO_DATOS;
 
-//~--- non-JDK imports --------------------------------------------------------
 import LOGICA.Programa;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DaoPrograma {
 
@@ -64,32 +61,30 @@ public class DaoPrograma {
     }
 
     public Programa consultarPrograma(String codigo) {
-        Programa p = new Programa();
+        Programa programa = new Programa();
         String sql_select;
 
         sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  programa WHERE codigo='" + codigo + "'";
 
         try {
             Connection conn = fachada.conectar();
-            System.out.println("consultando en la bd");
+            System.out.println("CONSULTA: "+sql_select);
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
 
             while (tabla.next()) {
-                p.setCodigo(tabla.getString(1));
-                p.setNombre(tabla.getString(2));
-                p.setNivel(tabla.getString(3));
-                p.setCreditos(tabla.getInt(4));
+                programa.setCodigo(tabla.getString(1));
+                programa.setNombre(tabla.getString(2));
+                programa.setNivel(tabla.getString(3));
+                programa.setCreditos(tabla.getInt(4));
                 System.out.println("ok");
             }
 
             conn.close();
 
-            return p;
-        } catch (SQLException e) {
-            System.out.println(e);
-        } catch (Exception e) {
-            System.out.println(e);
+            return programa;
+        } catch (SQLException ex) {
+            System.out.println("SQLException: "+ex);
         }
 
         return null;
@@ -130,19 +125,14 @@ public class DaoPrograma {
             while (tabla.next()) {
                 programasConsulta.add(new Programa());
                 programasConsulta.get(counter).setCodigo(tabla.getString(1));
-                System.out.println("Codigo: " + programasConsulta.get(counter).getCodigo());
                 programasConsulta.get(counter).setNombre(tabla.getString(2));
-                System.out.println("Nombre: " + programasConsulta.get(counter).getNombre());
                 programasConsulta.get(counter).setNivel(tabla.getString(3));
-                System.out.println("Nivel: " + programasConsulta.get(counter).getNivel());
                 programasConsulta.get(counter).setCreditos(tabla.getInt(4));
-                System.out.println("Creditos: " + programasConsulta.get(counter).getCreditos());
-                System.out.println(counter + " ok");
                 counter++;
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQLException: "+ex);
         }
         return programasConsulta;
     }
@@ -169,23 +159,23 @@ public class DaoPrograma {
             sentencia.executeUpdate(sql_modificar);
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQLException: "+ex);
         }
     }
 
     public void eliminarPrograma(Programa Programa) {
       
         try {
-            String sql_modificar = "DELETE FROM programa";
-            sql_modificar += " WHERE codigo = '" + Programa.getCodigo() + "'";
+            String sql_eliminar = "DELETE FROM programa";
+            sql_eliminar += " WHERE codigo = '" + Programa.getCodigo() + "'";
 
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
-            System.out.println("SQL: " + sql_modificar);
-            sentencia.executeUpdate(sql_modificar);
+            System.out.println("SQL: " + sql_eliminar);
+            sentencia.executeUpdate(sql_eliminar);
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoPrograma.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQLException: "+ex);
         }
     }
 }

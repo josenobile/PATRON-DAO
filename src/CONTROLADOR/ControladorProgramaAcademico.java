@@ -21,43 +21,51 @@
 //*********************************************************
 package CONTROLADOR;
 
-//~--- non-JDK imports --------------------------------------------------------
 import ACCESO_DATOS.DaoPrograma;
-
 import LOGICA.Programa;
 import java.util.ArrayList;
-
-//~--- JDK imports ------------------------------------------------------------
-
-import java.util.Vector;
 
 public class ControladorProgramaAcademico {
 
     DaoPrograma daoPrograma;
-    Programa seleccionadoParaEditar;
+    Programa seleccionarPrograma;
     ArrayList<Programa> ultimaConsulta;
 
     public ControladorProgramaAcademico() {
         daoPrograma = new DaoPrograma();
     }
 
-    public void insertarPrograma(String nombre, String codigo, String nivel, int numCreditos) {
-        Programa p = new Programa();
+    public String insertarPrograma(String nombre, String codigo, String nivel, String numCreditos) {
 
-        p.setCodigo(codigo);
-        p.setNombre(nombre);
-        p.setNivel(nivel);
-        p.setCreditos(numCreditos);
-
-        // Se llama al dao para guardar
-        System.out.println("Se va a insertar un programa");
-        daoPrograma.guardarPrograma(p);
-        System.out.println("Se va a insertó  un  nuevo programa");
-    }    // end
+        if (!nombre.isEmpty() && !codigo.isEmpty() && !nivel.isEmpty() && !numCreditos.isEmpty()) {
+            Programa p = new Programa();
+            p.setCodigo(codigo);
+            p.setNombre(nombre);
+            p.setNivel(nivel);
+            try {
+                p.setCreditos(Integer.parseInt(numCreditos));
+            } catch (NumberFormatException numberFormatException) {
+                return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
+            }
+            daoPrograma.guardarPrograma(p);
+            System.out.println("Se va a insertó  un  nuevo programa");
+            return "OK";
+        } else {
+        }
+        return "Es necesario ingresar la informacion de todos los campos";
+    }
 
     public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
 
-        ultimaConsulta= daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
+        if (!creditos.isEmpty()) {
+            try {
+                Integer.parseInt(creditos);
+            } catch (NumberFormatException numberFormatException) {
+                return null;
+            }
+        }
+        
+        ultimaConsulta = daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
 
         for (int i = 0; i < resultado.length; i++) {
@@ -69,44 +77,39 @@ public class ControladorProgramaAcademico {
         return resultado;
     }
 
-    public String[] programaSeleccionado(int seleccionado) {
-        
-        String programa[]= new String[4]; 
-        seleccionadoParaEditar=ultimaConsulta.get(seleccionado);
-    
-        programa[0]=seleccionadoParaEditar.getCodigo();
-        programa[1]=seleccionadoParaEditar.getNombre();
-        programa[2]=seleccionadoParaEditar.getNivel();
-        programa[3]=Integer.toString(seleccionadoParaEditar.getCreditos());
-        
+    public String[] seleccionarPrograma(int seleccionado) {
+
+        String programa[] = new String[4];
+        seleccionarPrograma = ultimaConsulta.get(seleccionado);
+
+        programa[0] = seleccionarPrograma.getCodigo();
+        programa[1] = seleccionarPrograma.getNombre();
+        programa[2] = seleccionarPrograma.getNivel();
+        programa[3] = Integer.toString(seleccionarPrograma.getCreditos());
+
         return programa;
-        
     }
 
-    public void actualizarPrograma(String nombre, String nivel, int creditos) {
-        
-        seleccionadoParaEditar.setNombre(nombre);
-        seleccionadoParaEditar.setNivel(nivel);
-        seleccionadoParaEditar.setCreditos(creditos);  
-        
-        System.out.println("Dentro del contorlador");
-        System.out.println("Progama Seleccionado: ");
-        System.out.println("Codigo: "+seleccionadoParaEditar.getCodigo());
-        System.out.println("Nombre: "+seleccionadoParaEditar.getNombre());
-        System.out.println("Nivel: "+seleccionadoParaEditar.getNivel());
-        System.out.println("Creditos: "+seleccionadoParaEditar.getCreditos());
-               
-        daoPrograma.modificarPrograma(seleccionadoParaEditar);
-        
+    public String actualizarPrograma(String nombre, String nivel, String creditos) {
+
+        if (!nombre.isEmpty() && !nivel.isEmpty() && !creditos.isEmpty()) {
+            
+            seleccionarPrograma.setNombre(nombre);
+            seleccionarPrograma.setNivel(nivel);
+            try {
+                seleccionarPrograma.setCreditos(Integer.parseInt(creditos));
+            } catch (NumberFormatException numberFormatException) {
+                return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
+            }
+            daoPrograma.modificarPrograma(seleccionarPrograma);
+
+            return "OK";
+        } else {
+            return "Es necesario ingresar la informacion de todos los campos";
+        }
     }
 
     public void eliminarPrograma() {
-        daoPrograma.eliminarPrograma(seleccionadoParaEditar);
+        daoPrograma.eliminarPrograma(seleccionarPrograma);
     }
-
-    
-
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
