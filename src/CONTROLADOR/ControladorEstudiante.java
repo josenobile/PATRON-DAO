@@ -19,40 +19,98 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package CONTROLADOR;
-
-//~--- non-JDK imports --------------------------------------------------------
 
 import ACCESO_DATOS.DaoEstudiante;
 import ACCESO_DATOS.DaoPrograma;
-
-import LOGICA.Estudiante;
 import LOGICA.Programa;
+import java.util.ArrayList;
 
 public class ControladorEstudiante {
+
     DaoEstudiante daoEstudiante;
+    Programa seleccionarPrograma;
+    ArrayList<Programa> ultimaConsulta;
 
     public ControladorEstudiante() {
         daoEstudiante = new DaoEstudiante();
     }
 
-    public void insertarEstudiante(String codigo, String nombre, String sexo, String codPrograma) {
-        Estudiante e        = new Estudiante();
-        Programa   programa = new DaoPrograma().consultarPrograma(codPrograma);
-        char       sex      = sexo.toCharArray()[0];
+    public String insertarPrograma(String nombre, String codigo, String nivel, String numCreditos) {
 
-        e.setCodigo(codigo);
-        e.setNombre(nombre);
-        e.setPrograma(programa);
-        e.setSexo(sex);
+        if (!nombre.isEmpty() && !codigo.isEmpty() && !nivel.isEmpty() && !numCreditos.isEmpty()) {
+            Programa p = new Programa();
+            p.setCodigo(codigo);
+            p.setNombre(nombre);
+            p.setNivel(nivel);
+            try {
+                p.setCreditos(Integer.parseInt(numCreditos));
+            } catch (NumberFormatException numberFormatException) {
+                return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
+            }
+            daoEstudiante.guardarPrograma(p);
+            System.out.println("Se va a insertó  un  nuevo programa");
+            return "OK";
+        } else {
+        }
+        return "Es necesario ingresar la informacion de todos los campos";
+    }
 
-        // Se llama al dao para guardar
-        System.out.println("Se va a insertar un Estudiante");
-        daoEstudiante.guardarEstudiante(e);
-        System.out.println("Se insertó  un  nuevo Estudiante");
+    public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
+
+        if (!creditos.isEmpty()) {
+            try {
+                Integer.parseInt(creditos);
+            } catch (NumberFormatException numberFormatException) {
+                return null;
+            }
+        }
+        
+        ultimaConsulta = daoEstudiante.consultarProgramas(codigo, nombrel, nivel, creditos);
+        Object resultado[][] = new Object[ultimaConsulta.size()][4];
+
+        for (int i = 0; i < resultado.length; i++) {
+            resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
+            resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
+            resultado[i][2] = ultimaConsulta.get(i).getNivel().toString();
+            resultado[i][3] = Integer.toString(ultimaConsulta.get(i).getCreditos());
+        }
+        return resultado;
+    }
+
+    public String[] seleccionarPrograma(int seleccionado) {
+
+        String programa[] = new String[4];
+        seleccionarPrograma = ultimaConsulta.get(seleccionado);
+
+        programa[0] = seleccionarPrograma.getCodigo();
+        programa[1] = seleccionarPrograma.getNombre();
+        programa[2] = seleccionarPrograma.getNivel();
+        programa[3] = Integer.toString(seleccionarPrograma.getCreditos());
+
+        return programa;
+    }
+
+    public String actualizarPrograma(String nombre, String nivel, String creditos) {
+
+        if (!nombre.isEmpty() && !nivel.isEmpty() && !creditos.isEmpty()) {
+            
+            seleccionarPrograma.setNombre(nombre);
+            seleccionarPrograma.setNivel(nivel);
+            try {
+                seleccionarPrograma.setCreditos(Integer.parseInt(creditos));
+            } catch (NumberFormatException numberFormatException) {
+                return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
+            }
+            daoEstudiante.modificarPrograma(seleccionarPrograma);
+
+            return "OK";
+        } else {
+            return "Es necesario ingresar la informacion de todos los campos";
+        }
+    }
+
+    public void eliminarPrograma() {
+        daoEstudiante.eliminarPrograma(seleccionarPrograma);
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

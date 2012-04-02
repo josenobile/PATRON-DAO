@@ -23,12 +23,12 @@ package GUI;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    JPanelEstudiantes panelEstudiantes;
+    JPanelEstudiante panelEstudiantes;
     JPanelProgramaAcademico panelPrograma;
 
     public MainFrame() {
         initComponents();
-        panelEstudiantes = new JPanelEstudiantes();
+        panelEstudiantes = new JPanelEstudiante();
         panelPrograma = new JPanelProgramaAcademico();
         getContentPane().add(panelEstudiantes);
         panelEstudiantes.setBounds(220, 0, 580, 500);
