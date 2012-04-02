@@ -21,7 +21,7 @@
 //*********************************************************
 package ACCESO_DATOS;
 
-import LOGICA.Programa;
+import LOGICA.Estudiante;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,146 +36,144 @@ public class DaoEstudiante {
         fachada = new FachadaBD();
     }
 
-    public int guardarPrograma(Programa p) {
+    public int guardarEstudiante(Estudiante estudiante) {
         String sql_guardar;
         int numFilas = 0;
 
-        sql_guardar = "INSERT INTO programa VALUES ('" + p.getCodigo() + "', '" + p.getNombre() + "', '" + p.getNivel()
-                + "', " + p.getCreditos() + ")";
+        sql_guardar = "INSERT INTO estudiante VALUES ('"
+                + estudiante.getCodigo() + "', '"
+                + estudiante.getNombre() + "', '"
+                + estudiante.getSexo() + "', "
+                + estudiante.getPrograma().getCodigo() + ")";
 
-        try {
-            Connection conn = fachada.conectar();
+        try (Connection conn = fachada.conectar()) {
             Statement sentencia = conn.createStatement();
-
             numFilas = sentencia.executeUpdate(sql_guardar);
-            conn.close();
 
             return numFilas;
-        } catch (SQLException e) {
-            System.out.println(e);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex);
         }
 
         return -1;
     }
 
-    public Programa consultarPrograma(String codigo) {
-        Programa programa = new Programa();
-        String sql_select;
-
-        sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  programa WHERE codigo='" + codigo + "'";
-
-        try {
-            Connection conn = fachada.conectar();
-            System.out.println("CONSULTA: "+sql_select);
-            Statement sentencia = conn.createStatement();
-            ResultSet tabla = sentencia.executeQuery(sql_select);
-
-            while (tabla.next()) {
-                programa.setCodigo(tabla.getString(1));
-                programa.setNombre(tabla.getString(2));
-                programa.setNivel(tabla.getString(3));
-                programa.setCreditos(tabla.getInt(4));
-                System.out.println("ok");
-            }
-
-            conn.close();
-
-            return programa;
-        } catch (SQLException ex) {
-            System.out.println("SQLException: "+ex);
-        }
-
-        return null;
-    }
-
-    public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
-
-        ArrayList<Programa> programasConsulta = new ArrayList<>();
-
-        String sql_select = "SELECT * FROM programa     ";
-        if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
-            sql_select += "WHERE ";
-        }
-        if (!codigo.isEmpty()) {
-            sql_select += "codigo = '" + codigo + "' AND ";
-        }
-        if (!nombre.isEmpty()) {
-            sql_select += "nombre LIKE '%" + nombre + "%' AND ";
-        }
-        if (!nivel.isEmpty()) {
-            sql_select += "nivel LIKE '%" + nivel + "%' AND ";
-        }
-        if (!numCreditos.isEmpty()) {
-            sql_select += "num_creditos = " + numCreditos + " AND ";
-        }
-
-
-        sql_select = sql_select.substring(0, sql_select.length() - 5);
-        System.out.println("Consulta: " + sql_select);
-
-        try {
-            Connection conn = fachada.conectar();
-            System.out.println("consultando en la bd");
-            Statement sentencia = conn.createStatement();
-            ResultSet tabla = sentencia.executeQuery(sql_select);
-
-            int counter = 0;
-            while (tabla.next()) {
-                programasConsulta.add(new Programa());
-                programasConsulta.get(counter).setCodigo(tabla.getString(1));
-                programasConsulta.get(counter).setNombre(tabla.getString(2));
-                programasConsulta.get(counter).setNivel(tabla.getString(3));
-                programasConsulta.get(counter).setCreditos(tabla.getInt(4));
-                counter++;
-            }
-
-        } catch (SQLException ex) {
-            System.out.println("SQLException: "+ex);
-        }
-        return programasConsulta;
-    }
-
-    public void modificarPrograma(Programa programa) {
-
-        System.out.println("Dentro del DAO");
-        System.out.println("Progama Seleccionado: ");
-        System.out.println("Codigo: " + programa.getCodigo());
-        System.out.println("Nombre: " + programa.getNombre());
-        System.out.println("Nivel: " + programa.getNivel());
-        System.out.println("Creditos: " + programa.getCreditos());
-
-        try {
-            String sql_modificar = "UPDATE programa";
-            sql_modificar += " set nombre = '" + programa.getNombre() + "',";
-            sql_modificar += " nivel = '" + programa.getNivel() + "',";
-            sql_modificar += " num_creditos = '" + programa.getCreditos() + "'";
-            sql_modificar += " WHERE codigo = '" + programa.getCodigo() + "'";
-
-            Connection conn = fachada.conectar();
-            Statement sentencia = conn.createStatement();
-            System.out.println("SQL: " + sql_modificar);
-            sentencia.executeUpdate(sql_modificar);
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println("SQLException: "+ex);
-        }
-    }
-
-    public void eliminarPrograma(Programa Programa) {
-      
-        try {
-            String sql_eliminar = "DELETE FROM programa";
-            sql_eliminar += " WHERE codigo = '" + Programa.getCodigo() + "'";
-
-            Connection conn = fachada.conectar();
-            Statement sentencia = conn.createStatement();
-            System.out.println("SQL: " + sql_eliminar);
-            sentencia.executeUpdate(sql_eliminar);
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println("SQLException: "+ex);
-        }
-    }
+//    public Estudiante consultarEstudiante(String codigo) {
+//        Estudiante estudiante = new Estudiante();
+//        String sql_select;
+//
+//        sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  estudiante WHERE codigo='" + codigo + "'";
+//
+//        try {
+//            Connection conn = fachada.conectar();
+//            System.out.println("CONSULTA: " + sql_select);
+//            Statement sentencia = conn.createStatement();
+//            ResultSet tabla = sentencia.executeQuery(sql_select);
+//
+//            while (tabla.next()) {
+//                estudiante.setCodigo(tabla.getString(1));
+//                estudiante.setNombre(tabla.getString(2));
+//                estudiante.setNivel(tabla.getString(3));
+//                estudiante.setCreditos(tabla.getInt(4));
+//                System.out.println("ok");
+//            }
+//
+//            conn.close();
+//
+//            return estudiante;
+//        } catch (SQLException ex) {
+//            System.out.println("SQLException: " + ex);
+//        }
+//
+//        return null;
+//    }
+//
+//    public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String nivel, String numCreditos) {
+//
+//        ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
+//
+//        String sql_select = "SELECT * FROM estudiante     ";
+//        if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
+//            sql_select += "WHERE ";
+//        }
+//        if (!codigo.isEmpty()) {
+//            sql_select += "codigo = '" + codigo + "' AND ";
+//        }
+//        if (!nombre.isEmpty()) {
+//            sql_select += "nombre LIKE '%" + nombre + "%' AND ";
+//        }
+//        if (!nivel.isEmpty()) {
+//            sql_select += "nivel LIKE '%" + nivel + "%' AND ";
+//        }
+//        if (!numCreditos.isEmpty()) {
+//            sql_select += "num_creditos = " + numCreditos + " AND ";
+//        }
+//
+//
+//        sql_select = sql_select.substring(0, sql_select.length() - 5);
+//        System.out.println("Consulta: " + sql_select);
+//
+//        try {
+//            Connection conn = fachada.conectar();
+//            System.out.println("consultando en la bd");
+//            Statement sentencia = conn.createStatement();
+//            ResultSet tabla = sentencia.executeQuery(sql_select);
+//
+//            int counter = 0;
+//            while (tabla.next()) {
+//                estudiantesConsulta.add(new Estudiante());
+//                estudiantesConsulta.get(counter).setCodigo(tabla.getString(1));
+//                estudiantesConsulta.get(counter).setNombre(tabla.getString(2));
+//                estudiantesConsulta.get(counter).setNivel(tabla.getString(3));
+//                estudiantesConsulta.get(counter).setCreditos(tabla.getInt(4));
+//                counter++;
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println("SQLException: " + ex);
+//        }
+//        return estudiantesConsulta;
+//    }
+//
+//    public void modificarEstudiante(Estudiante estudiante) {
+//
+//        System.out.println("Dentro del DAO");
+//        System.out.println("Progama Seleccionado: ");
+//        System.out.println("Codigo: " + estudiante.getCodigo());
+//        System.out.println("Nombre: " + estudiante.getNombre());
+//        System.out.println("Nivel: " + estudiante.getNivel());
+//        System.out.println("Creditos: " + estudiante.getCreditos());
+//
+//        try {
+//            String sql_modificar = "UPDATE estudiante";
+//            sql_modificar += " set nombre = '" + estudiante.getNombre() + "',";
+//            sql_modificar += " nivel = '" + estudiante.getNivel() + "',";
+//            sql_modificar += " num_creditos = '" + estudiante.getCreditos() + "'";
+//            sql_modificar += " WHERE codigo = '" + estudiante.getCodigo() + "'";
+//
+//            Connection conn = fachada.conectar();
+//            Statement sentencia = conn.createStatement();
+//            System.out.println("SQL: " + sql_modificar);
+//            sentencia.executeUpdate(sql_modificar);
+//            conn.close();
+//        } catch (SQLException ex) {
+//            System.out.println("SQLException: " + ex);
+//        }
+//    }
+//
+//    public void eliminarEstudiante(Estudiante Estudiante) {
+//
+//        try {
+//            String sql_eliminar = "DELETE FROM estudiante";
+//            sql_eliminar += " WHERE codigo = '" + Estudiante.getCodigo() + "'";
+//
+//            Connection conn = fachada.conectar();
+//            Statement sentencia = conn.createStatement();
+//            System.out.println("SQL: " + sql_eliminar);
+//            sentencia.executeUpdate(sql_eliminar);
+//            conn.close();
+//        } catch (SQLException ex) {
+//            System.out.println("SQLException: " + ex);
+//        }
+//    }
 }

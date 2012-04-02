@@ -28,14 +28,14 @@ import java.util.ArrayList;
 public class ControladorProgramaAcademico {
 
     DaoPrograma daoPrograma;
-    Programa seleccionarPrograma;
+    Programa programaSeleccionado;
     ArrayList<Programa> ultimaConsulta;
 
     public ControladorProgramaAcademico() {
         daoPrograma = new DaoPrograma();
     }
 
-    public String insertarPrograma(String nombre, String codigo, String nivel, String numCreditos) {
+    public String insertarPrograma( String codigo, String nombre, String nivel, String numCreditos) {
 
         if (!nombre.isEmpty() && !codigo.isEmpty() && !nivel.isEmpty() && !numCreditos.isEmpty()) {
             Programa p = new Programa();
@@ -55,7 +55,7 @@ public class ControladorProgramaAcademico {
         return "Es necesario ingresar la informacion de todos los campos";
     }
 
-    public Object[][] consultarProgramas(String codigo, String nombrel, String nivel, String creditos) {
+    public Object[][] consultarProgramas(String codigo, String nombre, String nivel, String creditos) {
 
         if (!creditos.isEmpty()) {
             try {
@@ -65,7 +65,7 @@ public class ControladorProgramaAcademico {
             }
         }
         
-        ultimaConsulta = daoPrograma.consultarProgramas(codigo, nombrel, nivel, creditos);
+        ultimaConsulta = daoPrograma.consultarProgramas(codigo, nombre, nivel, creditos);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
 
         for (int i = 0; i < resultado.length; i++) {
@@ -80,12 +80,12 @@ public class ControladorProgramaAcademico {
     public String[] seleccionarPrograma(int seleccionado) {
 
         String programa[] = new String[4];
-        seleccionarPrograma = ultimaConsulta.get(seleccionado);
+        programaSeleccionado = ultimaConsulta.get(seleccionado);
 
-        programa[0] = seleccionarPrograma.getCodigo();
-        programa[1] = seleccionarPrograma.getNombre();
-        programa[2] = seleccionarPrograma.getNivel();
-        programa[3] = Integer.toString(seleccionarPrograma.getCreditos());
+        programa[0] = programaSeleccionado.getCodigo();
+        programa[1] = programaSeleccionado.getNombre();
+        programa[2] = programaSeleccionado.getNivel();
+        programa[3] = Integer.toString(programaSeleccionado.getCreditos());
 
         return programa;
     }
@@ -94,14 +94,14 @@ public class ControladorProgramaAcademico {
 
         if (!nombre.isEmpty() && !nivel.isEmpty() && !creditos.isEmpty()) {
             
-            seleccionarPrograma.setNombre(nombre);
-            seleccionarPrograma.setNivel(nivel);
+            programaSeleccionado.setNombre(nombre);
+            programaSeleccionado.setNivel(nivel);
             try {
-                seleccionarPrograma.setCreditos(Integer.parseInt(creditos));
+                programaSeleccionado.setCreditos(Integer.parseInt(creditos));
             } catch (NumberFormatException numberFormatException) {
                 return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
             }
-            daoPrograma.modificarPrograma(seleccionarPrograma);
+            daoPrograma.modificarPrograma(programaSeleccionado);
 
             return "OK";
         } else {
@@ -110,6 +110,6 @@ public class ControladorProgramaAcademico {
     }
 
     public void eliminarPrograma() {
-        daoPrograma.eliminarPrograma(seleccionarPrograma);
+        daoPrograma.eliminarPrograma(programaSeleccionado);
     }
 }

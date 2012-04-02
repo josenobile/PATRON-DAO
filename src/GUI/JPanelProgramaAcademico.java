@@ -353,8 +353,8 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         String registro;
         registro = controladorPrograma.insertarPrograma(
-                jTFNombre.getText(),
                 jTFCodigo.getText(),
+                jTFNombre.getText(),
                 jTFNivel.getText(),
                 jTFNumCreditos.getText());
 
