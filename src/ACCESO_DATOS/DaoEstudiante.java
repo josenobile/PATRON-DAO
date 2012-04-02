@@ -136,32 +136,25 @@ public class DaoEstudiante {
         return estudiantesConsulta;
     }
 //
-//    public void modificarEstudiante(Estudiante estudiante) {
-//
-//        System.out.println("Dentro del DAO");
-//        System.out.println("Progama Seleccionado: ");
-//        System.out.println("Codigo: " + estudiante.getCodigo());
-//        System.out.println("Nombre: " + estudiante.getNombre());
-//        System.out.println("Nivel: " + estudiante.getNivel());
-//        System.out.println("Creditos: " + estudiante.getCreditos());
-//
-//        try {
-//            String sql_modificar = "UPDATE estudiante";
-//            sql_modificar += " set nombre = '" + estudiante.getNombre() + "',";
-//            sql_modificar += " nivel = '" + estudiante.getNivel() + "',";
-//            sql_modificar += " num_creditos = '" + estudiante.getCreditos() + "'";
-//            sql_modificar += " WHERE codigo = '" + estudiante.getCodigo() + "'";
-//
-//            Connection conn = fachada.conectar();
-//            Statement sentencia = conn.createStatement();
-//            System.out.println("SQL: " + sql_modificar);
-//            sentencia.executeUpdate(sql_modificar);
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException: " + ex);
-//        }
-//    }
-//
+    public void modificarEstudiante(Estudiante estudiante) {
+
+        try {
+            String sql_modificar = "UPDATE estudiante";
+            sql_modificar += " set nombre = '" + estudiante.getNombre() + "',";
+            sql_modificar += " sexo = '" + estudiante.getSexo() + "',";
+            sql_modificar += " codigo_programa = '" + estudiante.getPrograma().getCodigo() + "'";
+            sql_modificar += " WHERE codigo = '" + estudiante.getCodigo() + "'";
+
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
+            System.out.println("SQL: " + sql_modificar);
+            sentencia.executeUpdate(sql_modificar);
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex);
+        }
+    }
+
 //    public void eliminarEstudiante(Estudiante Estudiante) {
 //
 //        try {

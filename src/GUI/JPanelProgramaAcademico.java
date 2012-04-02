@@ -155,7 +155,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         jLabelRegistar1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelRegistar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRegistar1.setText("Consultar Programa Academico");
+        jLabelRegistar1.setText("Consulta Programas Academicos");
         jPanelConsulta.add(jLabelRegistar1);
         jLabelRegistar1.setBounds(0, 10, 580, 40);
 
@@ -248,7 +248,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
 
         jLabelRegistar3.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelRegistar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRegistar3.setText("Editar Programa Academico");
+        jLabelRegistar3.setText("Edicion Programa Academico");
         jPanelEditar.add(jLabelRegistar3);
         jLabelRegistar3.setBounds(0, 10, 580, 40);
 

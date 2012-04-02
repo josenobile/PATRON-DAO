@@ -164,7 +164,6 @@ public class DaoPrograma {
     }
 
     public void eliminarPrograma(Programa Programa) {
-      
         try {
             String sql_eliminar = "DELETE FROM programa";
             sql_eliminar += " WHERE codigo = '" + Programa.getCodigo() + "'";

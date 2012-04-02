@@ -51,9 +51,12 @@ public class MainFrame extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jLabelLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuFile = new javax.swing.JMenu();
-        jMenuEdit = new javax.swing.JMenu();
-        jMenuHelp = new javax.swing.JMenu();
+        jMenuArchivo = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenu();
+        jMIConexion = new javax.swing.JMenuItem();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMIAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PATRON-DAO");
@@ -99,14 +102,41 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 220, 500);
 
-        jMenuFile.setText("File");
-        jMenuBar1.add(jMenuFile);
+        jMenuArchivo.setText("Archivo");
 
-        jMenuEdit.setText("Edit");
-        jMenuBar1.add(jMenuEdit);
+        jMenuItem1.setText("Salir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuArchivo.add(jMenuItem1);
 
-        jMenuHelp.setText("Help");
-        jMenuBar1.add(jMenuHelp);
+        jMenuBar1.add(jMenuArchivo);
+
+        jMenuEditar.setText("Editar");
+
+        jMIConexion.setText("Conexion Base de datos");
+        jMIConexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConexionActionPerformed(evt);
+            }
+        });
+        jMenuEditar.add(jMIConexion);
+
+        jMenuBar1.add(jMenuEditar);
+
+        jMenuAyuda.setText("Ayuda");
+
+        jMIAcercaDe.setText("Acerca de");
+        jMIAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAcercaDeActionPerformed(evt);
+            }
+        });
+        jMenuAyuda.add(jMIAcercaDe);
+
+        jMenuBar1.add(jMenuAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -115,7 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
-        
+
         panelPrograma.setVisible(false);
         panelEstudiantes.setVisible(true);
 
@@ -126,6 +156,18 @@ public class MainFrame extends javax.swing.JFrame {
         panelEstudiantes.setVisible(false);
         panelPrograma.setVisible(true);
     }//GEN-LAST:event_jButtonProgramaActionPerformed
+
+    private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
+        // TODO Interfaz acerca de
+    }//GEN-LAST:event_jMIAcercaDeActionPerformed
+
+    private void jMIConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConexionActionPerformed
+        // TODO Interfaz conexion base de datos
+    }//GEN-LAST:event_jMIConexionActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -146,10 +188,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEstudiantes;
     private javax.swing.JButton jButtonPrograma;
     private javax.swing.JLabel jLabelLogo;
+    private javax.swing.JMenuItem jMIAcercaDe;
+    private javax.swing.JMenuItem jMIConexion;
+    private javax.swing.JMenu jMenuArchivo;
+    private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuEdit;
-    private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenu jMenuHelp;
+    private javax.swing.JMenu jMenuEditar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
