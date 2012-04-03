@@ -98,5 +98,9 @@ public class FachadaBD {
         FachadaBD.usuario = usuario;
     }
 
+    public static void updateUrl() {
+        FachadaBD.url = "jdbc:postgresql://"+host+":"+port+"/"+database;;
+    }
+
     
 }

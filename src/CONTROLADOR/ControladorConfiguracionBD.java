@@ -30,6 +30,7 @@ public class ControladorConfiguracionBD {
 
     public String setParametros(String host, String port, String database, String user, String password) {
 
+        System.out.print("Estoy aqui dentr del controlador");
         if (!host.isEmpty() && !port.isEmpty() && !database.isEmpty() && !user.isEmpty() && !password.isEmpty()) {
 
             FachadaBD.setHost(host);
@@ -37,6 +38,7 @@ public class ControladorConfiguracionBD {
             FachadaBD.setDatabase(database);
             FachadaBD.setUsuario(user);
             FachadaBD.setPassword(password);
+            FachadaBD.updateUrl();
 
             return "OK";
 

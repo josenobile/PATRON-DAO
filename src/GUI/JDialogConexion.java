@@ -9,6 +9,7 @@ public class JDialogConexion extends javax.swing.JDialog {
     public JDialogConexion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controladorBD = new ControladorConfiguracionBD();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -104,7 +105,6 @@ public class JDialogConexion extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        System.out.println("Password: "+ new String(jPFPassword.getPassword()));
         String respuesta = controladorBD.setParametros(
                 jTFHost.getText(),
                 jTFPort.getText(),
@@ -114,6 +114,9 @@ public class JDialogConexion extends javax.swing.JDialog {
 
         if (!respuesta.equals("OK")) {
             JOptionPane.showMessageDialog(this, respuesta);
+        }
+        else{
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
