@@ -57,37 +57,7 @@ public class DaoEstudiante {
 
         return -1;
     }
-
-//    public Estudiante consultarEstudiante(String codigo) {
-//        Estudiante estudiante = new Estudiante();
-//        String sql_select;
-//
-//        sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  estudiante WHERE codigo='" + codigo + "'";
-//
-//        try {
-//            Connection conn = fachada.conectar();
-//            System.out.println("CONSULTA: " + sql_select);
-//            Statement sentencia = conn.createStatement();
-//            ResultSet tabla = sentencia.executeQuery(sql_select);
-//
-//            while (tabla.next()) {
-//                estudiante.setCodigo(tabla.getString(1));
-//                estudiante.setNombre(tabla.getString(2));
-//                estudiante.setNivel(tabla.getString(3));
-//                estudiante.setCreditos(tabla.getInt(4));
-//                System.out.println("ok");
-//            }
-//
-//            conn.close();
-//
-//            return estudiante;
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException: " + ex);
-//        }
-//
-//        return null;
-//    }
-//
+    
     public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
 
         System.out.println("Entro al metodo Consultar en el DAO");
@@ -155,19 +125,18 @@ public class DaoEstudiante {
         }
     }
 
-//    public void eliminarEstudiante(Estudiante Estudiante) {
-//
-//        try {
-//            String sql_eliminar = "DELETE FROM estudiante";
-//            sql_eliminar += " WHERE codigo = '" + Estudiante.getCodigo() + "'";
-//
-//            Connection conn = fachada.conectar();
-//            Statement sentencia = conn.createStatement();
-//            System.out.println("SQL: " + sql_eliminar);
-//            sentencia.executeUpdate(sql_eliminar);
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println("SQLException: " + ex);
-//        }
-//    }
+    public void eliminarEstudiante(Estudiante Estudiante) {
+        try {
+            String sql_eliminar = "DELETE FROM estudiante";
+            sql_eliminar += " WHERE codigo = '" + Estudiante.getCodigo() + "'";
+
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
+            System.out.println("SQL: " + sql_eliminar);
+            sentencia.executeUpdate(sql_eliminar);
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex);
+        }
+    }
 }

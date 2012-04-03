@@ -19,28 +19,30 @@
 // ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
-
 package ACCESO_DATOS;
 
 //~--- JDK imports ------------------------------------------------------------
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class FachadaBD {
+
     Connection conexion;
-    Statement  instruccion;
-    ResultSet  tabla;
-    String     url, usuario, password;
+    Statement instruccion;
+    ResultSet tabla;
+    static String url, usuario, password, host, port, database;
 
     FachadaBD() {
-        url      = "jdbc:postgresql://localhost:5432/postgres";
-        usuario  = "postgres";
+        host= "gustalibreros.no-ip.org";
+        port= "5432";
+        database= "postgres";
+        url = "jdbc:postgresql://"+host+":"+port+"/"+database;
+        usuario = "postgres";
         password = "LibreroS10";
     }
-
+   
     public Connection conectar() {
         try {
 
@@ -66,8 +68,8 @@ public class FachadaBD {
 
             return null;
         }
-    }    // end connectar
-
+    }
+    
     public void cerrarConexion(Connection c) {
         try {
             c.close();
@@ -75,4 +77,26 @@ public class FachadaBD {
             System.out.println("No se pudo cerrar.");
         }
     }
-}    // end class
+
+    public static void setDatabase(String database) {
+        FachadaBD.database = database;
+    }
+
+    public static void setHost(String host) {
+        FachadaBD.host = host;
+    }
+
+    public static void setPassword(String password) {
+        FachadaBD.password = password;
+    }
+
+    public static void setPort(String port) {
+        FachadaBD.port = port;
+    }
+
+    public static void setUsuario(String usuario) {
+        FachadaBD.usuario = usuario;
+    }
+
+    
+}

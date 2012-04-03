@@ -103,7 +103,7 @@ public class ControladorEstudiante {
     public String actualizarEstudiante(String nombre, String sexo, String programa) {
 
         if (!nombre.isEmpty() && !sexo.equals(" ") && !programa.equals(" ")) {
-  
+
             estudianteSeleccionado.setNombre(nombre);
             estudianteSeleccionado.setSexo(sexo.toCharArray()[0]);
             estudianteSeleccionado.setPrograma(new DaoPrograma().consultarPrograma(programa.split(" -")[0]));
@@ -114,7 +114,7 @@ public class ControladorEstudiante {
             return "Es necesario ingresar la informacion de todos los campos";
         }
     }
-//    public void eliminarEstudiante() {
-//        daoEstudiante.eliminarEstudiante(estudianteSeleccionado);
-//    }
+    public void eliminarEstudiante() {
+        daoEstudiante.eliminarEstudiante(estudianteSeleccionado);
+    }
 }

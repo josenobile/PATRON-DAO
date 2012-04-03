@@ -417,18 +417,18 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarEActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-//        controladorEstudiante.eliminarPrograma();
-//        limpiarCamposConsulta();
-//        jButtonConsultar.doClick();
-//        jTabbedPane1.setSelectedIndex(1);
+        controladorEstudiante.eliminarEstudiante();
+        limpiarCamposConsulta();
+        jButtonConsultar.doClick();
+        jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         String actualizacion;
         actualizacion = controladorEstudiante.actualizarEstudiante(
                 jTFNombre3.getText(),
-                jCBSexo3.getSelectedObjects().toString(),
-                jCBSexo3.getSelectedObjects().toString());
+                jCBSexo3.getSelectedItem().toString(),
+                jCBPrograma3.getSelectedItem().toString());
 
         if (actualizacion.equals("OK")) {
             jTFCodigo1.setText(jTFCodigo3.getText());

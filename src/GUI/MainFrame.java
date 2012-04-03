@@ -21,6 +21,8 @@
 //*********************************************************
 package GUI;
 
+import javax.swing.JOptionPane;
+
 public class MainFrame extends javax.swing.JFrame {
 
     JPanelEstudiante panelEstudiantes;
@@ -158,11 +160,30 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProgramaActionPerformed
 
     private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
-        // TODO Interfaz acerca de
+
+        String acercaDe = "DESARROLLO DE SOFTWARE II\n"
+                + "TALLER PATRON-DAO\n\n"
+                + "AUTORES:\n\n"
+                + "Gustavo Adolfo Rodriguez    0932979-3743\n"
+                + "gustalibreros@hotmail.com\n\n"
+                + "José Antonio Nobile Rendón  0747102-2711\n"
+                + "jose.nobile@gmail.com\n\n"
+                + "Roberto Ceballos            0441812-3743\n"
+                + "robertrock2000@gmail.com\n\n"
+                + "Abril 2012\n\n"
+                + "ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION\n"
+                + "UNIVERSIDAD DEL VALLE\n";
+
+        JOptionPane.showMessageDialog(this, acercaDe, "Acerda de", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jMIConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConexionActionPerformed
-        // TODO Interfaz conexion base de datos
+       
+        JDialogConexion configConexion=new JDialogConexion(this, true);
+        configConexion.setVisible(true);
+     
+        
     }//GEN-LAST:event_jMIConexionActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
