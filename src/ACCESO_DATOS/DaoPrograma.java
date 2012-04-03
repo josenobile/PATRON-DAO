@@ -80,7 +80,6 @@ public class DaoPrograma {
                 programa.setNombre(tabla.getString(2));
                 programa.setNivel(tabla.getString(3));
                 programa.setCreditos(tabla.getInt(4));
-                System.out.println("ok");
             }
 
             conn.close();

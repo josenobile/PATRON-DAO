@@ -52,7 +52,7 @@ public class ControladorProgramaAcademico {
                         + "(1) Verifique la conexion con la base de datos no tenga problemas.\n"
                         + "(2) O que el Programa Academico no se encuentre ya registrado";
             }
-            System.out.println("Se va a insertó  un  nuevo programa");
+            System.out.println("Se insertó  un  nuevo programa");
             return "OK";
         } else {
         }

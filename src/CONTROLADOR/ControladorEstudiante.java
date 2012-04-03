@@ -46,7 +46,6 @@ public class ControladorEstudiante {
             estudiante.setSexo(sexo.toCharArray()[0]);
             estudiante.setPrograma(new DaoPrograma().consultarPrograma(programa.split(" -")[0]));
             
-            System.out.println("Codigo Estudiante: " + estudiante.getPrograma().getCodigo());
             if (daoEstudiante.guardarEstudiante(estudiante) == -1) {
                 return "No es posible registrar el Estudiante:\n"
                         + "(1) Verifique la conexion con la base de datos no tenga problemas.\n"
@@ -68,7 +67,6 @@ public class ControladorEstudiante {
         programasRegistrados[0] = " ";
         for (int i = 0; i < programas.size(); i++) {
             programasRegistrados[i + 1] = programas.get(i).getCodigo() + " - " + programas.get(i).getNombre();
-            System.out.println(i + " " + programasRegistrados[i + 1]);
         }
         return programasRegistrados;
         //</editor-fold>

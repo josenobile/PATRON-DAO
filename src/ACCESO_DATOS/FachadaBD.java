@@ -50,7 +50,6 @@ public class FachadaBD {
             // Se carga el driver
             Class.forName("org.postgresql.Driver");
             
-            // System.out.println( "Driver Cargado" );
         } catch (Exception e) {
             System.out.println("No se pudo cargar el driver.");
         }
