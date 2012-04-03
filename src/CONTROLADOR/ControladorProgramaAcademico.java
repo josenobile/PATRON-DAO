@@ -36,7 +36,7 @@ public class ControladorProgramaAcademico {
     }
 
     public String insertarPrograma(String codigo, String nombre, String nivel, String numCreditos) {
-
+        //<editor-fold defaultstate="collapsed" desc="insertarPrograma()">
         if (!nombre.isEmpty() && !codigo.isEmpty() && !nivel.isEmpty() && !numCreditos.isEmpty()) {
             Programa programa = new Programa();
             programa.setCodigo(codigo);
@@ -57,10 +57,11 @@ public class ControladorProgramaAcademico {
         } else {
         }
         return "Es necesario ingresar la informacion de todos los campos";
+        //</editor-fold>
     }
 
     public Object[][] consultarProgramas(String codigo, String nombre, String nivel, String creditos) {
-
+        //<editor-fold defaultstate="collapsed" desc="consultarProgramas()">
         if (!creditos.isEmpty()) {
             try {
                 Integer.parseInt(creditos);
@@ -68,10 +69,10 @@ public class ControladorProgramaAcademico {
                 return null;
             }
         }
-
+        
         ultimaConsulta = daoPrograma.consultarProgramas(codigo, nombre, nivel, creditos);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
-
+        
         for (int i = 0; i < resultado.length; i++) {
             resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
             resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
@@ -79,25 +80,27 @@ public class ControladorProgramaAcademico {
             resultado[i][3] = Integer.toString(ultimaConsulta.get(i).getCreditos());
         }
         return resultado;
+        //</editor-fold>
     }
 
     public String[] seleccionarPrograma(int seleccionado) {
-
+        //<editor-fold defaultstate="collapsed" desc="seleccionarPrograma()">
         String programa[] = new String[4];
         programaSeleccionado = ultimaConsulta.get(seleccionado);
-
+        
         programa[0] = programaSeleccionado.getCodigo();
         programa[1] = programaSeleccionado.getNombre();
         programa[2] = programaSeleccionado.getNivel();
         programa[3] = Integer.toString(programaSeleccionado.getCreditos());
-
+        
         return programa;
+        //</editor-fold>
     }
 
     public String actualizarPrograma(String nombre, String nivel, String creditos) {
-
+        //<editor-fold defaultstate="collapsed" desc="actualizarPrograma()">
         if (!nombre.isEmpty() && !nivel.isEmpty() && !creditos.isEmpty()) {
-
+            
             programaSeleccionado.setNombre(nombre);
             programaSeleccionado.setNivel(nivel);
             try {
@@ -106,11 +109,12 @@ public class ControladorProgramaAcademico {
                 return "Valor invalido para el numero de creditos. Éste debe ser un numero entero positivo";
             }
             daoPrograma.modificarPrograma(programaSeleccionado);
-
+            
             return "OK";
         } else {
             return "Es necesario ingresar la informacion de todos los campos";
         }
+        //</editor-fold>
     }
 
     public void eliminarPrograma() {

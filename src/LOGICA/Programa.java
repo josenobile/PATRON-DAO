@@ -20,8 +20,6 @@
 // UNIVERSIDAD DEL VALLE
 //*********************************************************
 
-
-
 package LOGICA;
 
 public class Programa {
@@ -64,6 +62,3 @@ public class Programa {
         this.nombre = nombre;
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

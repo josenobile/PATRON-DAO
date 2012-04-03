@@ -29,21 +29,22 @@ public class ControladorConfiguracionBD {
     }
 
     public String setParametros(String host, String port, String database, String user, String password) {
-
+        //<editor-fold defaultstate="collapsed" desc="setParamtros">
         System.out.print("Estoy aqui dentr del controlador");
         if (!host.isEmpty() && !port.isEmpty() && !database.isEmpty() && !user.isEmpty() && !password.isEmpty()) {
-
+            
             FachadaBD.setHost(host);
             FachadaBD.setPort(port);
             FachadaBD.setDatabase(database);
             FachadaBD.setUsuario(user);
             FachadaBD.setPassword(password);
             FachadaBD.updateUrl();
-
+            
             return "OK";
-
+            
         } else {
             return "Por favor ingrese la informacion de todos los campos";
         }
+        //</editor-fold>
     }
 }

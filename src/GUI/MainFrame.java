@@ -147,20 +147,17 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
-
         panelPrograma.setVisible(false);
         panelEstudiantes.setVisible(true);
-
     }//GEN-LAST:event_jButtonEstudiantesActionPerformed
 
     private void jButtonProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProgramaActionPerformed
-
         panelEstudiantes.setVisible(false);
         panelPrograma.setVisible(true);
     }//GEN-LAST:event_jButtonProgramaActionPerformed
 
     private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jMIAcercaDeActionPerformed()">
         String acercaDe = "DESARROLLO DE SOFTWARE II\n"
                 + "TALLER PATRON-DAO\n\n"
                 + "AUTORES:\n\n"
@@ -173,17 +170,16 @@ public class MainFrame extends javax.swing.JFrame {
                 + "Abril 2012\n\n"
                 + "ESCUELA DE INGENIERIA DE SISTEMAS Y COMPUTACION\n"
                 + "UNIVERSIDAD DEL VALLE\n";
-
+        
         JOptionPane.showMessageDialog(this, acercaDe, "Acerda de", JOptionPane.INFORMATION_MESSAGE);
-
+        //</editor-fold>
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jMIConexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConexionActionPerformed
-       
+        //<editor-fold defaultstate="collapsed" desc="jMIConexionActionPerformed()">
         JDialogConexion configConexion=new JDialogConexion(this, true);
         configConexion.setVisible(true);
-     
-        
+        //</editor-fold>
     }//GEN-LAST:event_jMIConexionActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -191,19 +187,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
-
+        //<editor-fold defaultstate="collapsed" desc="main()">
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
             public void run() {
                 new MainFrame().setVisible(true);
             }
         });
+        //</editor-fold>
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEstudiantes;

@@ -37,6 +37,7 @@ public class DaoEstudiante {
     }
 
     public int guardarEstudiante(Estudiante estudiante) {
+        //<editor-fold defaultstate="collapsed" desc="guardarEstudiante()">
         String sql_guardar;
         int numFilas = 0;
 
@@ -48,7 +49,7 @@ public class DaoEstudiante {
 
         try (Connection conn = fachada.conectar()) {
             Statement sentencia = conn.createStatement();
-            System.out.println("SQL: "+sql_guardar);
+            System.out.println("SQL: " + sql_guardar);
             numFilas = sentencia.executeUpdate(sql_guardar);
             return numFilas;
         } catch (SQLException ex) {
@@ -56,11 +57,11 @@ public class DaoEstudiante {
         }
 
         return -1;
+        //</editor-fold>
     }
-    
-    public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
 
-        System.out.println("Entro al metodo Consultar en el DAO");
+    public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
+        //<editor-fold defaultstate="collapsed" desc="consultarEstudiantes()">
         ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
 
         String sql_select = "SELECT * FROM estudiante     ";
@@ -84,7 +85,7 @@ public class DaoEstudiante {
 
         try {
             Connection conn = fachada.conectar();
-            System.out.println("SQL Consulta: "+sql_select);
+            System.out.println("SQL Consulta: " + sql_select);
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
 
@@ -95,19 +96,18 @@ public class DaoEstudiante {
                 estudiantesConsulta.get(counter).setNombre(tabla.getString(2));
                 estudiantesConsulta.get(counter).setSexo(tabla.getString(3).toCharArray()[0]);
                 estudiantesConsulta.get(counter).setPrograma(new DaoPrograma().consultarPrograma(tabla.getString(4)));
-                System.out.println("Estudiante: "+(counter+1)+" programa: "+estudiantesConsulta.get(counter).getPrograma().getCodigo());
                 counter++;
             }
-            System.out.println("Estudiantes Encontrados "+estudiantesConsulta.size());
 
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);
         }
         return estudiantesConsulta;
+        //</editor-fold>
     }
-//
-    public void modificarEstudiante(Estudiante estudiante) {
 
+    public void modificarEstudiante(Estudiante estudiante) {
+        //<editor-fold defaultstate="collapsed" desc="modificarEstudiante()">
         try {
             String sql_modificar = "UPDATE estudiante";
             sql_modificar += " set nombre = '" + estudiante.getNombre() + "',";
@@ -123,20 +123,22 @@ public class DaoEstudiante {
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);
         }
+        //</editor-fold>
     }
 
     public void eliminarEstudiante(Estudiante Estudiante) {
+        //<editor-fold defaultstate="collapsed" desc="eliminarEstudiante()">
         try {
             String sql_eliminar = "DELETE FROM estudiante";
             sql_eliminar += " WHERE codigo = '" + Estudiante.getCodigo() + "'";
-
-            Connection conn = fachada.conectar();
-            Statement sentencia = conn.createStatement();
-            System.out.println("SQL: " + sql_eliminar);
-            sentencia.executeUpdate(sql_eliminar);
-            conn.close();
+            try (Connection conn = fachada.conectar()) {
+                Statement sentencia = conn.createStatement();
+                System.out.println("SQL: " + sql_eliminar);
+                sentencia.executeUpdate(sql_eliminar);
+            }
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);
         }
+        //</editor-fold>
     }
 }

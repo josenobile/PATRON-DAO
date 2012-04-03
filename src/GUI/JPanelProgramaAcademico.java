@@ -319,30 +319,31 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jButtonConsultarActionPerformed()">
         Object programas[][] = controladorPrograma.consultarProgramas(
                 jTFCodigo1.getText(),
                 jTFNombre1.getText(),
                 jTFNivel1.getText(),
                 jTFNumCreditos1.getText());
-
+        
         TableModel myModel = new javax.swing.table.DefaultTableModel(
                 programas,
                 new String[]{
                     "Codigo", "Nombre", "Nivel", "Numero Creditos"
                 }) {
-
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        };
+                    
+                    boolean[] canEdit = new boolean[]{
+                        false, false, false, false
+                    };
+                    
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                };
         
         jTableResultados.setModel(myModel);
         jTableResultados.setRowSorter(new TableRowSorter(myModel));
+        //</editor-fold>
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
@@ -350,14 +351,14 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
    }//GEN-LAST:event_jButtonLimpiarCActionPerformed
 
     private void jButtonRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jButtonRegistarActionPerformed()">
         String registro;
         registro = controladorPrograma.insertarPrograma(
                 jTFCodigo.getText(),
                 jTFNombre.getText(),
                 jTFNivel.getText(),
                 jTFNumCreditos.getText());
-
+        
         if (registro.equals("OK")) {
             jTFCodigo1.setText(jTFCodigo.getText());
             jButtonConsultar.doClick();
@@ -366,6 +367,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, registro);
         }
+        //</editor-fold>
     }//GEN-LAST:event_jButtonRegistarActionPerformed
 
     private void jButtonLimpiarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarRActionPerformed
@@ -373,28 +375,30 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
     private void jButtonLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarEActionPerformed
-        
+        //<editor-fold defaultstate="collapsed" desc="jButtonLimpiarEActionPerformed()">
         jTFNombre3.setText("");
         jTFNivel3.setText("");
         jTFNumCreditos3.setText("");
-
+        //</editor-fold>
     }//GEN-LAST:event_jButtonLimpiarEActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonEliminarActionPerformed()">
         controladorPrograma.eliminarPrograma();
         limpiarCamposConsulta();
         jButtonConsultar.doClick();
         jTabbedPane1.setSelectedIndex(1);
+        //</editor-fold>
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jButtonActualizarActionPerformed()">
         String actualizacion;
         actualizacion = controladorPrograma.actualizarPrograma(
                 jTFNombre3.getText(),
                 jTFNivel3.getText(),
                 jTFNumCreditos3.getText());
-
+        
         if (actualizacion.equals("OK")) {
             jTFCodigo1.setText(jTFCodigo3.getText());
             jButtonConsultar.doClick();
@@ -403,11 +407,11 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, actualizacion);
         }
-        
+        //</editor-fold>
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jButtonEditarActionPerformed()">
         int seleccionado = jTableResultados.getSelectedRow();
         if (seleccionado >= 0) {
             String programa[] = controladorPrograma.seleccionarPrograma(seleccionado);
@@ -417,28 +421,34 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
             jTFNivel3.setText(programa[2]);
             jTFNumCreditos3.setText(programa[3]);
         }
+        //</editor-fold>
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     public void limpiarCamposRegistro() {
+        //<editor-fold defaultstate="collapsed" desc="limpiarCamposRegistro()">
         jTFCodigo.setText("");
         jTFNombre.setText("");
         jTFNivel.setText("");
         jTFNumCreditos.setText("");
+        //</editor-fold>
     }
 
     public void limpiarCamposEdicion() {
+        //<editor-fold defaultstate="collapsed" desc="limpiarCamposEdicion()">
         jTFCodigo3.setText("");
         jTFNombre3.setText("");
         jTFNivel3.setText("");
         jTFNumCreditos3.setText("");
+        //</editor-fold>
     }
 
     public void limpiarCamposConsulta() {
+        //<editor-fold defaultstate="collapsed" desc="limpiarCamposConsulta()">
         jTFCodigo1.setText("");
         jTFNombre1.setText("");
         jTFNivel1.setText("");
         jTFNumCreditos1.setText("");
-
+        
         TableModel myModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -447,6 +457,7 @@ public class JPanelProgramaAcademico extends javax.swing.JPanel {
         
         jTableResultados.setModel(myModel);
         jTableResultados.setRowSorter(new TableRowSorter(myModel));
+        //</editor-fold>
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

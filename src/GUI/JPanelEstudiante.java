@@ -31,7 +31,6 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     ControladorEstudiante controladorEstudiante;
 
     public JPanelEstudiante() {
-
         controladorEstudiante = new ControladorEstudiante();
         initComponents();
         jTabbedPane1.setEnabledAt(2, false);
@@ -358,30 +357,31 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-
+        //<editor-fold defaultstate="collapsed" desc="jButtonConsultarActionPerformed()">
         Object programas[][] = controladorEstudiante.consultarEstudiantes(
                 jTFCodigo1.getText(),
                 jTFNombre1.getText(),
                 jCBSexo1.getSelectedItem().toString(),
                 jCBPrograma1.getSelectedItem().toString());
-
+        
         TableModel myModel = new javax.swing.table.DefaultTableModel(
                 programas,
                 new String[]{
                     "Codigo", "Nombre", "Sexo", "Programa"
                 }) {
-
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        };
-
+                    
+                    boolean[] canEdit = new boolean[]{
+                        false, false, false, false
+                    };
+                    
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                };
+        
         jTableResultados.setModel(myModel);
         jTableResultados.setRowSorter(new TableRowSorter(myModel));
+        //</editor-fold>
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonLimpiarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarCActionPerformed
@@ -389,13 +389,14 @@ public class JPanelEstudiante extends javax.swing.JPanel {
    }//GEN-LAST:event_jButtonLimpiarCActionPerformed
 
     private void jButtonRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonRegistarActionPerformed()">
         String registro;
         registro = controladorEstudiante.insertarEstudiante(
                 jTFCodigo.getText(),
                 jTFNombre.getText(),
                 jCBSexo.getSelectedItem().toString(),
                 jCBPrograma.getSelectedItem().toString());
-
+        
         if (registro.equals("OK")) {
             jTFCodigo1.setText(jTFCodigo.getText());
             jButtonConsultar.doClick();
@@ -404,6 +405,7 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, registro);
         }
+        //</editor-fold>
     }//GEN-LAST:event_jButtonRegistarActionPerformed
 
     private void jButtonLimpiarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarRActionPerformed
@@ -411,25 +413,30 @@ public class JPanelEstudiante extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarRActionPerformed
 
     private void jButtonLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarEActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonLimpiarEActionPerformed()">
         jTFNombre3.setText("");
         jCBSexo3.setSelectedIndex(0);
         jCBPrograma3.setSelectedIndex(0);
+        //</editor-fold>
     }//GEN-LAST:event_jButtonLimpiarEActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonEliminarActionPerformed()">
         controladorEstudiante.eliminarEstudiante();
         limpiarCamposConsulta();
         jButtonConsultar.doClick();
         jTabbedPane1.setSelectedIndex(1);
+        //</editor-fold>
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonActualizarActionPerformed()">
         String actualizacion;
         actualizacion = controladorEstudiante.actualizarEstudiante(
                 jTFNombre3.getText(),
                 jCBSexo3.getSelectedItem().toString(),
                 jCBPrograma3.getSelectedItem().toString());
-
+        
         if (actualizacion.equals("OK")) {
             jTFCodigo1.setText(jTFCodigo3.getText());
             jButtonConsultar.doClick();
@@ -438,22 +445,24 @@ public class JPanelEstudiante extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, actualizacion);
         }
+        //</editor-fold>
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="jButtonEditarActionPerformed()">
         int seleccionado = jTableResultados.getSelectedRow();
         if (seleccionado >= 0) {
             String programa[] = controladorEstudiante.seleccionarEstudiante(seleccionado);
-
+            
             jTFCodigo3.setText(programa[0]);
             jTFNombre3.setText(programa[1]);
-
+            
             if (programa[2].equals("M")) {
                 jCBSexo3.setSelectedIndex(1);
             } else {
                 jCBSexo3.setSelectedIndex(2);
             }
-
+            
             jCBPrograma3.setModel(
                     new javax.swing.DefaultComboBoxModel(
                     controladorEstudiante.cargarProgramas()));
@@ -461,24 +470,31 @@ public class JPanelEstudiante extends javax.swing.JPanel {
             System.out.println("programaAcademico: "+programa[3]);
             jTabbedPane1.setSelectedIndex(2);
         }
+        //</editor-fold>
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jCBProgramaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBProgramaPopupMenuWillBecomeVisible
+        //<editor-fold defaultstate="collapsed" desc="jCBProgramaPopupMenuWillBecomeVisible()">
         jCBPrograma.setModel(
                 new javax.swing.DefaultComboBoxModel(
                 controladorEstudiante.cargarProgramas()));
+        //</editor-fold>
     }//GEN-LAST:event_jCBProgramaPopupMenuWillBecomeVisible
 
     private void jCBPrograma1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBPrograma1PopupMenuWillBecomeVisible
+        //<editor-fold defaultstate="collapsed" desc="jCBPrograma1PopupMenuWillBecomeVisible()">
         jCBPrograma1.setModel(
                 new javax.swing.DefaultComboBoxModel(
                 controladorEstudiante.cargarProgramas()));
+        //</editor-fold>
     }//GEN-LAST:event_jCBPrograma1PopupMenuWillBecomeVisible
 
     private void jCBPrograma3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBPrograma3PopupMenuWillBecomeVisible
+        //<editor-fold defaultstate="collapsed" desc="jCBPrograma3PopupMenuWillBecomeVisible()">
         jCBPrograma1.setModel(
                 new javax.swing.DefaultComboBoxModel(
                 controladorEstudiante.cargarProgramas()));
+        //</editor-fold>
     }//GEN-LAST:event_jCBPrograma3PopupMenuWillBecomeVisible
 
     private void limpiarCamposRegistro() {

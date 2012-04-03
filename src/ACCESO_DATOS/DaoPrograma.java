@@ -37,41 +37,44 @@ public class DaoPrograma {
     }
 
     public int guardarPrograma(Programa p) {
+        //<editor-fold defaultstate="collapsed" desc="guardarPrograma()">
         String sql_guardar;
         int numFilas = 0;
-
+        
         sql_guardar = "INSERT INTO programa VALUES ('" + p.getCodigo() + "', '" + p.getNombre() + "', '" + p.getNivel()
                 + "', " + p.getCreditos() + ")";
-
+        
         try {
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
-
+            
             numFilas = sentencia.executeUpdate(sql_guardar);
             conn.close();
-
+            
             return numFilas;
         } catch (SQLException e) {
             System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        
         return -1;
+        //</editor-fold>
     }
 
     public Programa consultarPrograma(String codigo) {
+        //<editor-fold defaultstate="collapsed" desc="consultarPrograma()">
         Programa programa = new Programa();
         String sql_select;
-
+        
         sql_select = "SELECT codigo, nombre,nivel, num_creditos FROM  programa WHERE codigo='" + codigo + "'";
-
+        
         try {
             Connection conn = fachada.conectar();
             System.out.println("CONSULTA: "+sql_select);
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
-
+            
             while (tabla.next()) {
                 programa.setCodigo(tabla.getString(1));
                 programa.setNombre(tabla.getString(2));
@@ -79,21 +82,22 @@ public class DaoPrograma {
                 programa.setCreditos(tabla.getInt(4));
                 System.out.println("ok");
             }
-
+            
             conn.close();
-
+            
             return programa;
         } catch (SQLException ex) {
             System.out.println("SQLException: "+ex);
         }
-
+        
         return null;
+        //</editor-fold>
     }
 
     public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
-
+        //<editor-fold defaultstate="collapsed" desc="consultarProgramas">
         ArrayList<Programa> programasConsulta = new ArrayList<>();
-
+        
         String sql_select = "SELECT * FROM programa     ";
         if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
             sql_select += "WHERE ";
@@ -110,17 +114,17 @@ public class DaoPrograma {
         if (!numCreditos.isEmpty()) {
             sql_select += "num_creditos = " + numCreditos + " AND ";
         }
-
-
+        
+        
         sql_select = sql_select.substring(0, sql_select.length() - 5);
         System.out.println("Consulta: " + sql_select);
-
+        
         try {
             Connection conn = fachada.conectar();
             System.out.println("consultando en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
-
+            
             int counter = 0;
             while (tabla.next()) {
                 programasConsulta.add(new Programa());
@@ -130,29 +134,23 @@ public class DaoPrograma {
                 programasConsulta.get(counter).setCreditos(tabla.getInt(4));
                 counter++;
             }
-
+            
         } catch (SQLException ex) {
             System.out.println("SQLException: "+ex);
         }
         return programasConsulta;
+        //</editor-fold>
     }
 
     public void modificarPrograma(Programa programa) {
-
-        System.out.println("Dentro del DAO");
-        System.out.println("Progama Seleccionado: ");
-        System.out.println("Codigo: " + programa.getCodigo());
-        System.out.println("Nombre: " + programa.getNombre());
-        System.out.println("Nivel: " + programa.getNivel());
-        System.out.println("Creditos: " + programa.getCreditos());
-
+        //<editor-fold defaultstate="collapsed" desc="modificarPrograma">
         try {
             String sql_modificar = "UPDATE programa";
             sql_modificar += " set nombre = '" + programa.getNombre() + "',";
             sql_modificar += " nivel = '" + programa.getNivel() + "',";
             sql_modificar += " num_creditos = '" + programa.getCreditos() + "'";
             sql_modificar += " WHERE codigo = '" + programa.getCodigo() + "'";
-
+            
             Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
             System.out.println("SQL: " + sql_modificar);
@@ -161,20 +159,22 @@ public class DaoPrograma {
         } catch (SQLException ex) {
             System.out.println("SQLException: "+ex);
         }
+        //</editor-fold>
     }
 
     public void eliminarPrograma(Programa Programa) {
+        //<editor-fold defaultstate="collapsed" desc="elimiarPrograma">
         try {
             String sql_eliminar = "DELETE FROM programa";
             sql_eliminar += " WHERE codigo = '" + Programa.getCodigo() + "'";
-
-            Connection conn = fachada.conectar();
-            Statement sentencia = conn.createStatement();
-            System.out.println("SQL: " + sql_eliminar);
-            sentencia.executeUpdate(sql_eliminar);
-            conn.close();
+            try (Connection conn = fachada.conectar()) {
+                Statement sentencia = conn.createStatement();
+                System.out.println("SQL: " + sql_eliminar);
+                sentencia.executeUpdate(sql_eliminar);
+            }
         } catch (SQLException ex) {
             System.out.println("SQLException: "+ex);
         }
+        //</editor-fold>
     }
 }

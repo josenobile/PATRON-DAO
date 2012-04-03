@@ -38,14 +38,14 @@ public class ControladorEstudiante {
     }
 
     public String insertarEstudiante(String codigo, String nombre, String sexo, String programa) {
-
+        //<editor-fold defaultstate="collapsed" desc="insertarEstudiante()">
         if (!nombre.isEmpty() && !codigo.isEmpty() && !sexo.equals(" ") && !programa.equals(" ")) {
             Estudiante estudiante = new Estudiante();
             estudiante.setCodigo(codigo);
             estudiante.setNombre(nombre);
             estudiante.setSexo(sexo.toCharArray()[0]);
             estudiante.setPrograma(new DaoPrograma().consultarPrograma(programa.split(" -")[0]));
-
+            
             System.out.println("Codigo Estudiante: " + estudiante.getPrograma().getCodigo());
             if (daoEstudiante.guardarEstudiante(estudiante) == -1) {
                 return "No es posible registrar el Estudiante:\n"
@@ -57,26 +57,28 @@ public class ControladorEstudiante {
         } else {
         }
         return "Es necesario ingresar la informacion de todos los campos";
+        //</editor-fold>
     }
 
     public String[] cargarProgramas() {
-
+        //<editor-fold defaultstate="collapsed" desc="cargarProgramas()">
         ArrayList<Programa> programas = new DaoPrograma().consultarProgramas("", "", "", "");
         String[] programasRegistrados = new String[programas.size() + 1];
-
+        
         programasRegistrados[0] = " ";
         for (int i = 0; i < programas.size(); i++) {
             programasRegistrados[i + 1] = programas.get(i).getCodigo() + " - " + programas.get(i).getNombre();
             System.out.println(i + " " + programasRegistrados[i + 1]);
         }
         return programasRegistrados;
+        //</editor-fold>
     }
 
     public Object[][] consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
-
+        //<editor-fold defaultstate="collapsed" desc="consultarEstudiantes()">
         ultimaConsulta = daoEstudiante.consultarEstudiantes(codigo, nombre, sexo, programa.split(" -")[0]);
         Object resultado[][] = new Object[ultimaConsulta.size()][4];
-
+        
         for (int i = 0; i < resultado.length; i++) {
             resultado[i][0] = ultimaConsulta.get(i).getCodigo().toString();
             resultado[i][1] = ultimaConsulta.get(i).getNombre().toString();
@@ -84,36 +86,40 @@ public class ControladorEstudiante {
             resultado[i][3] = (ultimaConsulta.get(i).getPrograma().getCodigo());
         }
         return resultado;
+        //</editor-fold>
     }
 
     public String[] seleccionarEstudiante(int seleccionado) {
-
+        //<editor-fold defaultstate="collapsed" desc="seleccionarEstudiante()">
         String estudiante[] = new String[4];
         estudianteSeleccionado = ultimaConsulta.get(seleccionado);
-
+        
         estudiante[0] = estudianteSeleccionado.getCodigo();
         estudiante[1] = estudianteSeleccionado.getNombre();
         estudiante[2] = Character.toString(estudianteSeleccionado.getSexo());
         estudiante[3] = estudianteSeleccionado.getPrograma().getCodigo()
                 + " - " + estudianteSeleccionado.getPrograma().getNombre();
-
+        
         return estudiante;
+        //</editor-fold>
     }
 
     public String actualizarEstudiante(String nombre, String sexo, String programa) {
-
+        //<editor-fold defaultstate="collapsed" desc="actualizarEstudiante">
         if (!nombre.isEmpty() && !sexo.equals(" ") && !programa.equals(" ")) {
-
+            
             estudianteSeleccionado.setNombre(nombre);
             estudianteSeleccionado.setSexo(sexo.toCharArray()[0]);
             estudianteSeleccionado.setPrograma(new DaoPrograma().consultarPrograma(programa.split(" -")[0]));
             daoEstudiante.modificarEstudiante(estudianteSeleccionado);
-
+            
             return "OK";
         } else {
             return "Es necesario ingresar la informacion de todos los campos";
         }
+        //</editor-fold>
     }
+    
     public void eliminarEstudiante() {
         daoEstudiante.eliminarEstudiante(estudianteSeleccionado);
     }
