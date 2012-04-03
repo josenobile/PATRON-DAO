@@ -47,7 +47,8 @@ public class DaoEstudiante {
                 + estudiante.getSexo() + "', "
                 + estudiante.getPrograma().getCodigo() + ")";
 
-        try (Connection conn = fachada.conectar()) {
+        try {
+            Connection conn = fachada.conectar();
             Statement sentencia = conn.createStatement();
             System.out.println("SQL: " + sql_guardar);
             numFilas = sentencia.executeUpdate(sql_guardar);
@@ -131,11 +132,12 @@ public class DaoEstudiante {
         try {
             String sql_eliminar = "DELETE FROM estudiante";
             sql_eliminar += " WHERE codigo = '" + Estudiante.getCodigo() + "'";
-            try (Connection conn = fachada.conectar()) {
-                Statement sentencia = conn.createStatement();
-                System.out.println("SQL: " + sql_eliminar);
-                sentencia.executeUpdate(sql_eliminar);
-            }
+
+            Connection conn = fachada.conectar();
+            Statement sentencia = conn.createStatement();
+            System.out.println("SQL: " + sql_eliminar);
+            sentencia.executeUpdate(sql_eliminar);
+
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex);
         }
