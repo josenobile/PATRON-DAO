@@ -63,7 +63,7 @@ public class DaoEstudiante {
 
     public ArrayList<Estudiante> consultarEstudiantes(String codigo, String nombre, String sexo, String programa) {
         //<editor-fold defaultstate="collapsed" desc="consultarEstudiantes()">
-        ArrayList<Estudiante> estudiantesConsulta = new ArrayList<>();
+        ArrayList<Estudiante> estudiantesConsulta = new ArrayList<Estudiante>();
 
         String sql_select = "SELECT * FROM estudiante     ";
         if (!codigo.isEmpty() || !nombre.isEmpty() || !sexo.equals(" ") || !programa.equals(" ")) {

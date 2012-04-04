@@ -22,6 +22,7 @@
 package GUI;
 
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -189,8 +190,16 @@ public class MainFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc="main()">
         try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            try {
+                javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            } catch (InstantiationException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            } catch (UnsupportedLookAndFeelException ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         

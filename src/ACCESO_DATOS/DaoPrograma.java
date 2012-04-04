@@ -21,6 +21,7 @@
 //*********************************************************
 package ACCESO_DATOS;
 
+import LOGICA.Estudiante;
 import LOGICA.Programa;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -95,7 +96,7 @@ public class DaoPrograma {
 
     public ArrayList<Programa> consultarProgramas(String codigo, String nombre, String nivel, String numCreditos) {
         //<editor-fold defaultstate="collapsed" desc="consultarProgramas">
-        ArrayList<Programa> programasConsulta = new ArrayList<>();
+        ArrayList<Programa> programasConsulta = new ArrayList<Programa>();
 
         String sql_select = "SELECT * FROM programa     ";
         if (!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !numCreditos.isEmpty()) {
