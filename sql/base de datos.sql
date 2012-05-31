@@ -24,3 +24,10 @@ ALTER TABLE  estudiante
 
 ALTER TABLE  estudiante
     ADD CONSTRAINT programa_estudiante_fk FOREIGN KEY (codigo_programa) REFERENCES programa(codigo);
+
+
+INSERT INTO "public".programa (codigo, nombre, nivel, num_creditos) 
+	VALUES ('3743', 'Ingenieria de Sistemas', 'Pregrado', 160);
+
+INSERT INTO "public".programa (codigo, nombre, nivel, num_creditos) 
+	VALUES ('2711', 'Tecnologia de Sistemas', 'Pregrado', 100);

@@ -35,12 +35,12 @@ public class FachadaBD {
     static String url, usuario, password, host, port, database;
 
     FachadaBD() {
-        host= "gustalibreros.no-ip.org";
+        host= "pgsql";
         port= "5432";
-        database= "postgres";
+        database= "gadolforl";
         url = "jdbc:postgresql://"+host+":"+port+"/"+database;
-        usuario = "postgres";
-        password = "LibreroS10";
+        usuario = "gadolforl";
+        password = "gadolforl";
     }
    
     public Connection conectar() {
